@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import * as Icons from 'lucide-react';
-import { AGENCY, HERO_IMG, ABOUT_IMG, SERVICES, WHY_US, INDUSTRIES, PROCESS, STATS, PRICING, PORTFOLIO, FAQS, BLOG } from '@/data/site';
+import { AGENCY, HERO_IMG, ABOUT_IMG, SERVICES, WHY_US, INDUSTRIES, PROCESS, STATS, PRICING, PORTFOLIO, FAQS, BLOG, CLIENTS, TESTIMONIALS, TEAM } from '@/data/site';
 
 export function Reveal({ children, delay = 0, className = '' }) {
   return (
@@ -86,6 +86,71 @@ export function Hero() {
   );
 }
 
+export function TrustBar() {
+  return (
+    <section className="mx-auto max-w-[90rem] px-5 py-14 lg:px-10">
+      <Reveal className="text-center text-xs font-semibold uppercase tracking-widest text-muted-foreground">Trusted by growing brands across the region</Reveal>
+      <div className="mt-7 flex flex-wrap items-center justify-center gap-x-10 gap-y-5">
+        {CLIENTS.map((c, i) => (
+          <Reveal key={c} delay={(i % 8) * 0.03}>
+            <span className="font-display text-base font-bold tracking-tight text-muted-foreground/70 grayscale transition-all hover:text-primary hover:grayscale-0 sm:text-lg">{c}</span>
+          </Reveal>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export function Testimonials() {
+  return (
+    <section className="bg-secondary/30 py-20">
+      <div className="mx-auto max-w-[90rem] px-5 lg:px-10">
+        <SectionHead center eyebrow="Client Testimonials" title="Don't just take our word for it" sub="Real feedback from the businesses we have helped grow." />
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {TESTIMONIALS.map((t, i) => (
+            <Reveal key={t.name} delay={(i % 3) * 0.06}>
+              <div className="flex h-full flex-col rounded-2xl border border-border bg-card p-6">
+                <div className="flex gap-1 text-accent">
+                  {Array.from({ length: t.rating }).map((_, idx) => (
+                    <Icons.Star key={idx} className="h-4 w-4 fill-accent" />
+                  ))}
+                </div>
+                <p className="mt-4 flex-1 text-sm leading-relaxed text-muted-foreground">&ldquo;{t.quote}&rdquo;</p>
+                <div className="mt-6 flex items-center gap-3 border-t border-border pt-5">
+                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-gradient-to-br from-primary to-accent font-display text-sm font-bold text-white">{t.initials}</span>
+                  <div>
+                    <p className="font-display text-sm font-bold">{t.name}</p>
+                    <p className="text-xs text-muted-foreground">{t.role}, {t.company}</p>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function Team() {
+  return (
+    <section className="mx-auto max-w-[90rem] px-5 py-20 lg:px-10">
+      <SectionHead center eyebrow="Our Team" title="The people behind your growth" sub="A small, senior team of specialists who care about your results as much as you do." />
+      <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {TEAM.map((m, i) => (
+          <Reveal key={m.name} delay={(i % 4) * 0.06}>
+            <div className="flex flex-col items-center rounded-2xl border border-border bg-card p-7 text-center transition-colors hover:bg-secondary/40">
+              <span className="grid h-20 w-20 place-items-center rounded-full bg-gradient-to-br from-primary to-accent font-display text-2xl font-bold text-white shadow-lg shadow-primary/20">{m.initials}</span>
+              <h3 className="mt-4 font-display font-bold">{m.name}</h3>
+              <p className="mt-1 text-sm text-muted-foreground">{m.role}</p>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 export function Marquee() {
   const items = ['Social Media', 'Google Ads', 'Meta Ads', 'SEO', 'Web Development', 'Branding', 'Video Editing', 'Graphic Design'];
   const loop = [...items, ...items];
@@ -135,13 +200,13 @@ export function About({ full }) {
   );
 }
 
-export function ServicesGrid({ full }) {
+export function ServicesGrid({ full, hideHead }) {
   const list = full ? SERVICES : SERVICES;
   return (
     <section className="bg-secondary/30 py-20">
       <div className="mx-auto max-w-[90rem] px-5 lg:px-10">
-        <SectionHead center eyebrow="Our Services" title="Everything you need to grow, under one roof" sub="Eight core services engineered to attract, convert and retain customers." />
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {!hideHead && <SectionHead center eyebrow="Our Services" title="Everything you need to grow, under one roof" sub="Eight core services engineered to attract, convert and retain customers." />}
+        <div className={`grid gap-5 sm:grid-cols-2 lg:grid-cols-4 ${hideHead ? '' : 'mt-12'}`}>
           {list.map((s, i) => (
             <Reveal key={s.slug} delay={(i % 4) * 0.06}>
               <Link to={`/services/${s.slug}`} className="group flex h-full flex-col rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/5">
@@ -249,11 +314,11 @@ export function PortfolioGrid() {
   );
 }
 
-export function Pricing() {
+export function Pricing({ hideHead }) {
   return (
     <section className="mx-auto max-w-[90rem] px-5 py-20 lg:px-10">
-      <SectionHead center eyebrow="Pricing" title="Transparent plans that scale with you" sub="No hidden fees. Cancel anytime. Custom quotes available." />
-      <div className="mt-12 grid gap-6 lg:grid-cols-3">
+      {!hideHead && <SectionHead center eyebrow="Pricing" title="Transparent plans that scale with you" sub="No hidden fees. Cancel anytime. Custom quotes available." />}
+      <div className={`grid gap-6 lg:grid-cols-3 ${hideHead ? '' : 'mt-12'}`}>
         {PRICING.map((p, i) => (
           <Reveal key={p.name} delay={i * 0.08}>
             <div className={`relative h-full rounded-3xl border p-8 ${p.featured ? 'border-primary bg-primary text-primary-foreground shadow-2xl shadow-primary/30 lg:-mt-4' : 'border-border bg-card'}`}>
@@ -295,12 +360,12 @@ export function BlogGrid() {
   );
 }
 
-export function FAQ({ full }) {
+export function FAQ({ full, hideHead }) {
   const [open, setOpen] = useState(0);
   return (
     <section className="mx-auto max-w-3xl px-5 py-20">
-      <SectionHead center eyebrow="FAQ" title="Questions, answered" />
-      <div className="mt-10 space-y-3">
+      {!hideHead && <SectionHead center eyebrow="FAQ" title="Questions, answered" />}
+      <div className={`space-y-3 ${hideHead ? '' : 'mt-10'}`}>
         {FAQS.map((f, i) => (
           <Reveal key={f.q} delay={i * 0.04}>
             <div className="overflow-hidden rounded-2xl border border-border bg-card">

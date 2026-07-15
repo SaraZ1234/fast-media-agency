@@ -78,41 +78,89 @@ export const SERVICE_DETAILS = {
     description: 'We turn your social channels into a consistent engine for reach, engagement and leads. From strategy and content calendars to daily posting, reels and community management, we own every feed your audience scrolls so your brand stays top of mind.',
     benefits: ['Consistent, on-brand presence across every platform', 'Higher engagement and organic reach', 'A steady flow of inbound leads and DMs', 'Time saved with fully managed content'],
     process: ['Audit & goal setting', 'Content strategy + calendar', 'Design, copy & scheduling', 'Community management', 'Monthly reporting & optimisation'],
+    idealFor: ['Brands with no consistent posting schedule', 'Businesses that get engagement but few leads', 'Teams without time to manage content in-house'],
+    timeline: 'First content live within 5 business days; full calendar rhythm by week 3.',
+    faqs: [
+      { q: 'How many posts do I get per month?', a: 'Plans typically range from 12 to daily posting depending on your package, always paired with stories and reels.' },
+      { q: 'Do you write the captions and source images?', a: 'Yes, our team handles copywriting, design and, where needed, sources or shoots visuals for every post.' },
+    ],
   },
   'google-ads': {
     description: 'Capture high-intent buyers the moment they search. We build, manage and optimise Google Ads campaigns across Search, Display, Shopping and YouTube to deliver qualified traffic at the lowest possible cost per conversion.',
     benefits: ['Reach customers actively searching for you', 'Lower cost per lead through constant optimisation', 'Full conversion tracking and transparency', 'Scalable, predictable pipeline'],
     process: ['Account & competitor audit', 'Keyword & audience research', 'Campaign build + tracking setup', 'Launch & bid management', 'A/B testing & scaling'],
+    idealFor: ['Businesses with a defined service area or product catalogue', 'Teams who want measurable, trackable ad spend', 'Anyone currently overpaying for clicks or leads'],
+    timeline: 'Campaigns typically launch within 7–10 business days after tracking setup and approval.',
+    faqs: [
+      { q: 'What is the minimum ad budget?', a: 'We work with budgets from $500/month upward; we will recommend a realistic starting point based on your industry and goals.' },
+      { q: 'Who owns the Google Ads account?', a: 'You do. The account is created under your business and remains yours even if you ever stop working with us.' },
+    ],
   },
   'meta-ads': {
     description: 'Scroll-stopping Facebook and Instagram campaigns that convert. We craft creative, target the right audiences and optimise for the outcomes that matter, whether that is leads, sales or WhatsApp conversations.',
     benefits: ['Creative that stops the scroll', 'Precise audience targeting & remarketing', 'Lower acquisition costs at scale', 'Direct-to-WhatsApp lead flows'],
     process: ['Pixel & tracking setup', 'Audience & creative strategy', 'Campaign build & launch', 'Creative testing', 'Scaling winning ad sets'],
+    idealFor: ['E-commerce and retail brands', 'Service businesses that convert via calls or WhatsApp', 'Anyone wanting to scale proven organic content with paid budget'],
+    timeline: 'Pixel and account setup in week 1, first campaigns live by week 2, creative testing ongoing from week 3.',
+    faqs: [
+      { q: 'Do you design the ad creative too?', a: 'Yes, our design and video team produces creative variations specifically for testing, included in every ads package.' },
+      { q: 'How is performance measured?', a: 'We track cost per result, ROAS and downstream conversions via pixel and CRM integration, reported on a regular cadence.' },
+    ],
   },
   'website-development': {
     description: 'Fast, secure, mobile-first websites built to sell. From business sites to full e-commerce stores, we design and develop platforms that load quickly, rank well and turn visitors into customers.',
     benefits: ['Fast, SEO-friendly, secure builds', 'Mobile responsive on every device', 'Conversion-focused layouts', 'Easy-to-manage CMS dashboard'],
     process: ['Discovery & wireframes', 'Design & content', 'Development & integrations', 'QA & launch', 'Support & optimisation'],
+    idealFor: ['Businesses with an outdated or slow website', 'Startups launching their first online presence', 'Brands needing e-commerce or booking functionality'],
+    timeline: 'Standard business websites: 3–4 weeks. E-commerce or custom builds: 5–8 weeks.',
+    faqs: [
+      { q: 'Will I be able to update the site myself?', a: 'Yes, every website ships with a simple CMS dashboard and a short training session so your team can update content independently.' },
+      { q: 'Is hosting and domain included?', a: 'We can manage hosting, domain and SSL for you, or hand over full access if you prefer to manage it in-house.' },
+    ],
   },
   'seo': {
     description: 'Rank higher and earn traffic that compounds. Our technical, on-page, off-page and local SEO work builds sustainable organic visibility that keeps delivering long after the work is done.',
     benefits: ['Sustainable, compounding organic traffic', 'Higher rankings for money keywords', 'Stronger local visibility & Maps presence', 'Clear reporting on rankings and traffic'],
     process: ['Technical & content audit', 'Keyword & competitor research', 'On-page optimisation', 'Link building & authority', 'Tracking & reporting'],
+    idealFor: ['Businesses relying too heavily on paid ads', 'Local businesses invisible on Google Maps', 'Content-driven brands wanting long-term traffic'],
+    timeline: 'Technical fixes within 30 days; meaningful ranking movement typically in 2–4 months.',
+    faqs: [
+      { q: 'How long until I see results?', a: 'SEO compounds over time. Most clients see meaningful ranking and traffic gains within 2–4 months, growing steadily after.' },
+      { q: 'Do you guarantee #1 rankings?', a: 'No ethical agency can guarantee exact rankings, but we set clear, realistic targets and report transparently against them.' },
+    ],
   },
   'graphic-design': {
     description: 'Visuals that make your brand unmissable. From logos and social posts to brochures, packaging and full brand identities, we craft design that communicates clearly and looks the part.',
     benefits: ['Cohesive, professional brand visuals', 'Assets ready for every channel', 'Faster turnaround on creative', 'A brand that stands out'],
     process: ['Brief & moodboard', 'Concepts & direction', 'Design & revisions', 'Final files & handover'],
+    idealFor: ['Brands with inconsistent or outdated visuals', 'Businesses launching a new product or campaign', 'Teams needing an ongoing design resource'],
+    timeline: 'Single assets: 2–4 business days. Full campaigns or identity suites: 1–2 weeks.',
+    faqs: [
+      { q: 'How many revisions are included?', a: 'Every project includes two rounds of revisions as standard, with additional rounds available if needed.' },
+      { q: 'What file formats do I receive?', a: 'You receive editable source files plus export-ready formats for print and digital use.' },
+    ],
   },
   'video-editing': {
     description: 'Reels and films that hold attention. We edit short-form and long-form video with motion graphics, subtitles and pacing engineered to keep viewers watching and taking action.',
     benefits: ['Higher watch-time and retention', 'Platform-ready reels and shorts', 'Professional motion graphics', 'Consistent content pipeline'],
     process: ['Footage review & script', 'Rough cut', 'Motion graphics & sound', 'Revisions & export'],
+    idealFor: ['Brands producing raw footage but no polished output', 'Businesses wanting a steady reel and shorts pipeline', 'Teams needing promotional or corporate video edits'],
+    timeline: 'Short-form reels: 2–3 business days. Longer promotional videos: 5–7 business days.',
+    faqs: [
+      { q: 'Do I need to provide the footage?', a: 'You can supply raw footage, or we can coordinate a shoot through our network of videographers.' },
+      { q: 'What formats do you deliver for?', a: 'We export optimised versions for Instagram, TikTok, YouTube and any other platform you need, from a single edit.' },
+    ],
   },
   'branding': {
     description: 'A brand people remember and trust. We build brand strategy, identity systems and guidelines that give your business a clear, consistent and confident presence in the market.',
     benefits: ['A distinct, memorable identity', 'Consistency across every touchpoint', 'Clear brand guidelines', 'Stronger customer trust'],
     process: ['Discovery & strategy', 'Identity design', 'Guidelines & assets', 'Rollout support'],
+    idealFor: ['New businesses building their identity from scratch', 'Established brands in need of a refresh', 'Franchises needing consistent guidelines across locations'],
+    timeline: 'Full brand identity projects typically run 3–5 weeks from discovery to final handover.',
+    faqs: [
+      { q: 'What is included in a brand guideline?', a: 'Logo usage, color palette, typography, tone of voice and application examples across your key marketing materials.' },
+      { q: 'Can you rebrand an existing business?', a: 'Yes, we regularly refresh existing brands while preserving the recognition and equity already built with customers.' },
+    ],
   },
 };
 
@@ -155,14 +203,32 @@ export const PRICING = [
 ];
 
 const PORTFOLIO_RAW = [
-  { title: 'Luxe Real Estate', cat: 'Website + Google Ads', industry: 'Real Estate', metric: '+320% qualified leads', client: 'Luxe Properties LLC', tech: ['React', 'Google Ads', 'Search', 'Landing Pages'], challenge: 'A premium developer was generating plenty of clicks but few serious buyer enquiries, with a bloated cost per lead.', solution: 'We rebuilt their website around high-intent property landing pages and restructured Google Ads campaigns with tighter targeting and conversion tracking.', results: ['+320% qualified leads', '-42% cost per lead', '2.1x more booked viewings'] },
-  { title: 'Verde Restaurant Group', cat: 'Social Media + Reels', industry: 'Restaurants', metric: '2.4M organic reach', client: 'Verde Hospitality', tech: ['Instagram', 'Reels', 'Content Strategy'], challenge: 'Multiple restaurant locations with inconsistent social presence and low organic reach.', solution: 'We built a unified content calendar with daily reels, story design and community management across all locations.', results: ['2.4M organic reach', '+68% follower growth', '+35% weekend covers'] },
-  { title: 'Nova Fashion', cat: 'E-commerce + Meta Ads', industry: 'Fashion', metric: '5.8x return on ad spend', client: 'Nova Apparel', tech: ['Shopify', 'Meta Ads', 'Pixel', 'Remarketing'], challenge: 'A growing fashion label struggled to scale paid social profitably.', solution: 'We rebuilt the pixel setup, created a testing framework for creative and scaled winning audiences with remarketing funnels.', results: ['5.8x ROAS', '+210% online revenue', '-31% cost per purchase'] },
-  { title: 'BrightSmile Dental', cat: 'Local SEO', industry: 'Healthcare', metric: '#1 ranking in 4 months', client: 'BrightSmile Clinic', tech: ['Local SEO', 'Google Business', 'On-Page SEO'], challenge: 'A dental clinic was invisible in local search despite excellent reviews.', solution: 'We optimised their Google Business Profile, fixed technical SEO and built local citations and content.', results: ['#1 local ranking in 4 months', '+240% Maps calls', '+3x new patient bookings'] },
-  { title: 'Apex Auto', cat: 'Branding + Video', industry: 'Automotive', metric: '+180% showroom bookings', client: 'Apex Motors', tech: ['Branding', 'Video Editing', 'Motion Graphics'], challenge: 'An auto dealership needed a modern brand and content to attract younger buyers.', solution: 'We delivered a full rebrand plus a library of promotional reels and showroom videos.', results: ['+180% showroom bookings', '+92% social engagement', '4.2M video views'] },
-  { title: 'Meridian Finance', cat: 'Website + SEO', industry: 'Finance', metric: '3x organic traffic', client: 'Meridian Advisory', tech: ['Web Development', 'Technical SEO', 'Content'], challenge: 'A finance firm had an outdated site with almost no organic traffic.', solution: 'We built a fast, SEO-friendly website and executed a content and technical SEO strategy.', results: ['3x organic traffic', '+150% enquiry form submissions', 'Page 1 for 20+ keywords'] },
+  { title: 'Luxe Real Estate', cat: 'Website + Google Ads', industry: 'Real Estate', metric: '+320% qualified leads', client: 'Luxe Properties LLC', tech: ['React', 'Google Ads', 'Search', 'Landing Pages'], duration: '6 weeks', teamSize: '4 specialists', challenge: 'A premium developer was generating plenty of clicks but few serious buyer enquiries, with a bloated cost per lead.', solution: 'We rebuilt their website around high-intent property landing pages and restructured Google Ads campaigns with tighter targeting and conversion tracking.', approach: ['Audited existing site and ad account structure', 'Designed dedicated landing pages per property type', 'Rebuilt Search campaigns around high-intent keywords', 'Installed full conversion tracking and call recording'], results: ['+320% qualified leads', '-42% cost per lead', '2.1x more booked viewings'] },
+  { title: 'Verde Restaurant Group', cat: 'Social Media + Reels', industry: 'Restaurants', metric: '2.4M organic reach', client: 'Verde Hospitality', tech: ['Instagram', 'Reels', 'Content Strategy'], duration: '3 months (ongoing)', teamSize: '3 specialists', challenge: 'Multiple restaurant locations with inconsistent social presence and low organic reach.', solution: 'We built a unified content calendar with daily reels, story design and community management across all locations.', approach: ['Audited each location\u2019s existing channels and tone', 'Built a shared content calendar and shoot schedule', 'Produced daily reels, stories and posts per location', 'Managed community replies and DMs across all pages'], results: ['2.4M organic reach', '+68% follower growth', '+35% weekend covers'] },
+  { title: 'Nova Fashion', cat: 'E-commerce + Meta Ads', industry: 'Fashion', metric: '5.8x return on ad spend', client: 'Nova Apparel', tech: ['Shopify', 'Meta Ads', 'Pixel', 'Remarketing'], duration: '8 weeks', teamSize: '3 specialists', challenge: 'A growing fashion label struggled to scale paid social profitably.', solution: 'We rebuilt the pixel setup, created a testing framework for creative and scaled winning audiences with remarketing funnels.', approach: ['Rebuilt pixel and server-side conversion tracking', 'Ran structured creative testing across audience segments', 'Built remarketing funnels for cart abandoners', 'Scaled winning ad sets while trimming underperformers'], results: ['5.8x ROAS', '+210% online revenue', '-31% cost per purchase'] },
+  { title: 'BrightSmile Dental', cat: 'Local SEO', industry: 'Healthcare', metric: '#1 ranking in 4 months', client: 'BrightSmile Clinic', tech: ['Local SEO', 'Google Business', 'On-Page SEO'], duration: '4 months', teamSize: '2 specialists', challenge: 'A dental clinic was invisible in local search despite excellent reviews.', solution: 'We optimised their Google Business Profile, fixed technical SEO and built local citations and content.', approach: ['Completed a full technical and on-page SEO audit', 'Optimised Google Business Profile and review strategy', 'Built local citations and location-specific content', 'Tracked rankings and Maps calls month over month'], results: ['#1 local ranking in 4 months', '+240% Maps calls', '+3x new patient bookings'] },
+  { title: 'Apex Auto', cat: 'Branding + Video', industry: 'Automotive', metric: '+180% showroom bookings', client: 'Apex Motors', tech: ['Branding', 'Video Editing', 'Motion Graphics'], duration: '5 weeks', teamSize: '4 specialists', challenge: 'An auto dealership needed a modern brand and content to attract younger buyers.', solution: 'We delivered a full rebrand plus a library of promotional reels and showroom videos.', approach: ['Ran discovery workshops to define brand positioning', 'Designed new visual identity and guidelines', 'Produced a launch library of reels and showroom videos', 'Rolled out the new brand across social and signage'], results: ['+180% showroom bookings', '+92% social engagement', '4.2M video views'] },
+  { title: 'Meridian Finance', cat: 'Website + SEO', industry: 'Finance', metric: '3x organic traffic', client: 'Meridian Advisory', tech: ['Web Development', 'Technical SEO', 'Content'], duration: '7 weeks', teamSize: '3 specialists', challenge: 'A finance firm had an outdated site with almost no organic traffic.', solution: 'We built a fast, SEO-friendly website and executed a content and technical SEO strategy.', approach: ['Rebuilt the website on a fast, SEO-friendly stack', 'Mapped and targeted 20+ priority keywords', 'Published pillar content around core services', 'Built technical SEO foundations and internal linking'], results: ['3x organic traffic', '+150% enquiry form submissions', 'Page 1 for 20+ keywords'] },
 ];
 export const PORTFOLIO = PORTFOLIO_RAW.map((p) => ({ ...p, slug: slugify(p.title) }));
+
+export const CLIENTS = ['Luxe Properties', 'Verde Hospitality', 'Nova Apparel', 'BrightSmile Clinic', 'Apex Motors', 'Meridian Advisory', 'Orbit Realty', 'Horizon Retail'];
+
+export const TESTIMONIALS = [
+  { name: 'Ahmed Al Farsi', role: 'Managing Director', company: 'Luxe Properties LLC', initials: 'AF', rating: 5, quote: 'FAST MEDIA AGENCY rebuilt our website and Google Ads from scratch. Qualified enquiries tripled within the first quarter and the reporting is refreshingly clear.' },
+  { name: 'Priya Nair', role: 'Marketing Lead', company: 'Verde Hospitality', initials: 'PN', rating: 5, quote: 'Our social presence went from inconsistent to genuinely on-brand across every location. The content calendar alone saved our team hours every week.' },
+  { name: 'Karim Haddad', role: 'Founder', company: 'Nova Apparel', initials: 'KH', rating: 5, quote: 'They rebuilt our pixel and ad testing framework and our return on ad spend nearly doubled within two months. Communication has been excellent throughout.' },
+  { name: 'Dr. Layla Nasser', role: 'Clinic Owner', company: 'BrightSmile Clinic', initials: 'LN', rating: 5, quote: 'We went from invisible on Google to the top local ranking in under four months. New patient calls have never been steadier.' },
+  { name: 'Marco Silva', role: 'Brand Manager', company: 'Apex Motors', initials: 'MS', rating: 5, quote: 'The rebrand and video content gave us a completely different presence with younger buyers. Showroom traffic is up and the creative quality is consistently high.' },
+  { name: 'Rania Youssef', role: 'CEO', company: 'Meridian Advisory', initials: 'RY', rating: 5, quote: 'A genuine growth partner, not just a vendor. Our organic traffic tripled and their team is proactive about flagging opportunities before we even ask.' },
+];
+
+export const TEAM = [
+  { name: 'Sara Malik', role: 'Founder & Strategy Director', initials: 'SM' },
+  { name: 'Omar Haddad', role: 'Head of Social & Content', initials: 'OH' },
+  { name: 'Daniel Reyes', role: 'Head of Web Development', initials: 'DR' },
+  { name: 'Layla Aziz', role: 'Creative & Brand Director', initials: 'LA' },
+];
 
 export const FAQS = [
   { q: 'How soon will I see results?', a: 'Paid campaigns can drive leads within the first week. SEO and organic growth typically show meaningful movement in 2–4 months as we compound results.' },

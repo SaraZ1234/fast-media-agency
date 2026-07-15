@@ -3,9 +3,9 @@ import { Helmet } from 'react-helmet';
 import { Link, useParams } from 'react-router-dom';
 import { Phone, Mail, MapPin, Clock, MessageCircle, Send, CheckCircle2, Check, ArrowRight, ArrowLeft, TrendingUp, Search as SearchIcon, Calendar, User, Tag, Sparkles } from 'lucide-react';
 import * as Icons from 'lucide-react';
-import { AGENCY, SERVICES, SERVICE_DETAILS, PORTFOLIO, BLOG, PRICING } from '@/data/site';
+import { AGENCY, SERVICES, SERVICE_DETAILS, PORTFOLIO, BLOG, PRICING, TESTIMONIALS } from '@/data/site';
 // import { Hero, Marquee, About, ServicesGrid, WhyUs, Industries, Process, PortfolioGrid, Pricing, BlogGrid, FAQ, CTA, SectionHead, Reveal, Eyebrow } from '@/components/sections';
-import { Hero, Marquee, About, ServicesGrid, WhyUs, Industries, Process, PortfolioGrid, Pricing, BlogGrid, FAQ, CTA, SectionHead, Reveal, Eyebrow } from "@/sections";
+import { Hero, Marquee, TrustBar, About, ServicesGrid, WhyUs, Industries, Process, PortfolioGrid, Testimonials, Team, Pricing, BlogGrid, FAQ, CTA, SectionHead, Reveal, Eyebrow } from "@/sections";
 
 
 function CtaButtons({ light }) {
@@ -50,12 +50,14 @@ export function HomePage() {
       <Seo title="Result-Driven Digital Marketing Agency" desc="FAST MEDIA AGENCY helps businesses grow sales, generate leads and build a powerful online presence through digital marketing, ads, SEO, web development and branding." />
       <Hero />
       <Marquee />
+      <TrustBar />
       <About />
       <ServicesGrid />
       <WhyUs />
       <Industries />
       <Process />
       <PortfolioGrid />
+      <Testimonials />
       <Pricing />
       <FAQ />
       <CTA />
@@ -68,8 +70,10 @@ export function AboutPage() {
     <Seo title="About Us" desc="Learn about FAST MEDIA AGENCY, a full-service digital marketing agency on a mission to grow your business." />
     <PageHero eyebrow="About Us" title="We turn attention into revenue" sub="A full-service digital marketing agency built for ambitious brands." />
     <About full />
+    <Team />
     <WhyUs />
     <Process />
+    <Testimonials />
     <CTA />
   </>);
 }
@@ -78,7 +82,7 @@ export function ServicesPage() {
   return (<>
     <Seo title="Our Services" desc="Explore FAST MEDIA AGENCY services: social media, Google Ads, Meta Ads, SEO, web development, graphic design, video editing and branding." />
     <PageHero eyebrow="Our Services" title="Everything you need to grow" sub="Eight core services engineered to attract, convert and retain customers." />
-    <ServicesGrid full />
+    <ServicesGrid full hideHead />
     <Industries />
     <CTA />
   </>);
@@ -121,6 +125,7 @@ export function PortfolioDetailPage() {
   const item = PORTFOLIO.find((p) => p.slug === slug);
   if (!item) return <NotFound label="Portfolio item" to="/portfolio" cta="Back to portfolio" />;
   const related = PORTFOLIO.filter((p) => p.slug !== slug).slice(0, 3);
+  const quote = TESTIMONIALS.find((t) => item.client.toLowerCase().includes(t.company.toLowerCase()) || t.company.toLowerCase().includes(item.client.toLowerCase().split(' ')[0].toLowerCase()));
   return (<>
     <Seo title={item.title} desc={item.challenge} />
     <PageHero eyebrow={item.industry} title={item.title} sub={`${item.client} \u2014 ${item.cat}`} />
@@ -131,9 +136,25 @@ export function PortfolioDetailPage() {
         <InfoCard label="Industry" value={item.industry} icon={Tag} />
         <InfoCard label="Services" value={item.cat} icon={Sparkles} />
       </div>
+      {(item.duration || item.teamSize) && (
+        <div className="mt-4 grid gap-4 sm:grid-cols-2">
+          {item.duration && <InfoCard label="Project Duration" value={item.duration} icon={Icons.Clock3} />}
+          {item.teamSize && <InfoCard label="Team Involved" value={item.teamSize} icon={Icons.Users} />}
+        </div>
+      )}
       <div className="mt-10 space-y-8">
         <Block title="The Challenge">{item.challenge}</Block>
         <Block title="Our Solution">{item.solution}</Block>
+        {item.approach && item.approach.length > 0 && (
+          <div>
+            <h3 className="font-display text-xl font-bold">Our Approach</h3>
+            <div className="mt-4 space-y-3">
+              {item.approach.map((step, i) => (
+                <div key={step} className="flex gap-4 rounded-xl border border-border bg-card p-4"><span className="font-display text-lg font-extrabold text-primary/30">{String(i + 1).padStart(2, '0')}</span><p className="text-sm text-muted-foreground">{step}</p></div>
+              ))}
+            </div>
+          </div>
+        )}
         <div>
           <h3 className="font-display text-xl font-bold">Results Achieved</h3>
           <div className="mt-4 grid gap-4 sm:grid-cols-3">
@@ -146,6 +167,13 @@ export function PortfolioDetailPage() {
           <h3 className="font-display text-xl font-bold">Technologies Used</h3>
           <div className="mt-4 flex flex-wrap gap-2">{item.tech.map((t) => <span key={t} className="rounded-full bg-secondary px-3 py-1.5 text-sm font-medium">{t}</span>)}</div>
         </div>
+        {quote && (
+          <div className="rounded-3xl border border-border bg-card p-7">
+            <div className="flex gap-1 text-accent">{Array.from({ length: quote.rating }).map((_, idx) => <Icons.Star key={idx} className="h-4 w-4 fill-accent" />)}</div>
+            <p className="mt-4 text-lg leading-relaxed text-foreground">&ldquo;{quote.quote}&rdquo;</p>
+            <p className="mt-4 text-sm font-semibold">{quote.name} <span className="font-normal text-muted-foreground">— {quote.role}, {quote.company}</span></p>
+          </div>
+        )}
       </div>
       <div className="mt-12 rounded-3xl border border-border bg-secondary/40 p-8 text-center">
         <h3 className="font-display text-2xl font-bold">Want results like these?</h3>
@@ -185,6 +213,17 @@ export function ServiceDetailPage() {
               <li key={f} className="flex items-center gap-2.5 rounded-xl border border-border bg-card px-4 py-3 text-sm"><Check className="h-4 w-4 shrink-0 text-accent" />{f}</li>
             ))}
           </ul>
+
+          {detail.idealFor && detail.idealFor.length > 0 && (
+            <div className="mt-10">
+              <h2 className="font-display text-2xl font-bold">Who this is for</h2>
+              <ul className="mt-5 space-y-3">
+                {detail.idealFor.map((it) => (
+                  <li key={it} className="flex gap-3 rounded-xl border border-border bg-card px-4 py-3 text-sm"><span className="grid h-6 w-6 shrink-0 place-items-center rounded-lg bg-accent/10 text-accent"><Icons.ArrowRight className="h-3.5 w-3.5" /></span>{it}</li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
         <div>
           <h2 className="font-display text-2xl font-bold">Benefits</h2>
@@ -193,6 +232,12 @@ export function ServiceDetailPage() {
               <li key={b} className="flex gap-3"><span className="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary"><Check className="h-4 w-4" /></span><span className="text-sm text-muted-foreground">{b}</span></li>
             ))}
           </ul>
+          {detail.timeline && (
+            <div className="mt-8 rounded-2xl border-l-4 border-accent bg-secondary/50 p-5">
+              <p className="flex items-center gap-2 font-display font-semibold"><Icons.Clock3 className="h-4 w-4 text-accent" /> Typical timeline</p>
+              <p className="mt-1.5 text-sm text-muted-foreground">{detail.timeline}</p>
+            </div>
+          )}
         </div>
       </div>
 
@@ -227,6 +272,15 @@ export function ServiceDetailPage() {
         <Link to={`/portfolio/${example.slug}`} className="mt-4 inline-flex items-center gap-1 font-semibold text-primary">Read the case study <ArrowRight className="h-4 w-4" /></Link>
       </div>
 
+      {detail.faqs && detail.faqs.length > 0 && (
+        <div className="mt-14">
+          <h2 className="font-display text-2xl font-bold">{service.title} FAQs</h2>
+          <div className="mt-6 space-y-3">
+            {detail.faqs.map((f) => <ServiceFaqItem key={f.q} q={f.q} a={f.a} />)}
+          </div>
+        </div>
+      )}
+
       <div className="mt-14 rounded-[2rem] bg-gradient-to-br from-primary to-accent px-8 py-12 text-center text-white">
         <h2 className="font-display text-3xl font-extrabold">Ready to get started with {service.title}?</h2>
         <div className="mt-6 flex justify-center"><CtaButtons light /></div>
@@ -255,6 +309,19 @@ function Block({ title, children }) {
   return (<div><h3 className="font-display text-xl font-bold">{title}</h3><p className="mt-3 text-muted-foreground">{children}</p></div>);
 }
 
+function ServiceFaqItem({ q, a }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="overflow-hidden rounded-2xl border border-border bg-card">
+      <button onClick={() => setOpen((o) => !o)} className="flex w-full items-center justify-between gap-4 p-5 text-left font-display font-semibold">
+        {q}
+        <Icons.ChevronDown className={`h-5 w-5 shrink-0 text-primary transition-transform ${open ? 'rotate-180' : ''}`} />
+      </button>
+      {open && <p className="px-5 pb-5 text-sm text-muted-foreground">{a}</p>}
+    </div>
+  );
+}
+
 function NotFound({ label, to, cta }) {
   return (
     <section className="mx-auto max-w-xl px-5 py-32 text-center">
@@ -269,8 +336,8 @@ export function PricingPage() {
   return (<>
     <Seo title="Pricing" desc="Transparent, flexible pricing plans from FAST MEDIA AGENCY." />
     <PageHero eyebrow="Pricing" title="Plans that scale with you" sub="Transparent pricing with no hidden fees." />
-    <Pricing />
-    <FAQ />
+    <Pricing hideHead />
+    <FAQ hideHead />
     <CTA />
   </>);
 }
@@ -381,7 +448,7 @@ export function FaqPage() {
   return (<>
     <Seo title="FAQ" desc="Frequently asked questions about working with FAST MEDIA AGENCY." />
     <PageHero eyebrow="FAQ" title="Questions, answered" sub="Everything you need to know before we start." />
-    <FAQ full />
+    <FAQ full hideHead />
     <CTA />
   </>);
 }
