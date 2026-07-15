@@ -83,14 +83,14 @@ function Header() {
 function Footer() {
   const socials = [Facebook, Instagram, Linkedin, Youtube, Twitter];
   return (
-    <footer className="mt-24 border-t border-border bg-secondary/40">
-      <div className="mx-auto grid max-w-[90rem] gap-10 px-5 py-16 lg:grid-cols-[1.4fr_1fr_1fr_1fr] lg:px-10">
-        <div>
+    <footer className="mt-16 border-t border-border bg-secondary/40 sm:mt-20 lg:mt-24">
+      <div className="mx-auto grid max-w-[90rem] gap-8 px-5 py-12 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-10 sm:px-6 sm:py-14 lg:grid-cols-[1.4fr_1fr_1fr_1fr] lg:gap-10 lg:px-10 lg:py-16">
+        <div className="sm:col-span-2 lg:col-span-1">
           <Logo />
           <p className="mt-4 max-w-xs text-sm text-muted-foreground">Result-driven digital marketing that grows sales, leads and brand presence for ambitious businesses.</p>
-          <div className="mt-5 flex gap-2">
+          <div className="mt-5 flex flex-wrap gap-2">
             {socials.map((Icon, i) => (
-              <a key={i} href="#" aria-label="social" className="grid h-9 w-9 place-items-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary">
+              <a key={i} href="#" aria-label="social" className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary">
                 <Icon className="h-4 w-4" />
               </a>
             ))}
@@ -101,9 +101,12 @@ function Footer() {
         <FooterCol title="Legal" links={[['Privacy Policy', '/privacy'], ['Terms & Conditions', '/terms'], ['Cookie Policy', '/privacy'], ['FAQ', '/faq'], ['Case Studies', '/portfolio']]} />
       </div>
       <div className="border-t border-border">
-        <div className="mx-auto flex max-w-[90rem] flex-col items-center justify-between gap-2 px-5 py-6 text-sm text-muted-foreground lg:flex-row lg:px-10">
+        <div className="mx-auto flex max-w-[90rem] flex-col items-center justify-between gap-3 px-5 py-6 text-center text-sm text-muted-foreground sm:px-6 lg:flex-row lg:px-10 lg:text-left">
           <p>&copy; 2026 {AGENCY.name}. All Rights Reserved.</p>
-          <p className="flex items-center gap-4"><span className="flex items-center gap-1.5"><Phone className="h-3.5 w-3.5" />{AGENCY.phone}</span><span className="flex items-center gap-1.5"><Mail className="h-3.5 w-3.5" />{AGENCY.email}</span></p>
+          <p className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 lg:justify-end">
+            <span className="flex items-center gap-1.5"><Phone className="h-3.5 w-3.5 shrink-0" />{AGENCY.phone}</span>
+            <span className="flex items-center gap-1.5"><Mail className="h-3.5 w-3.5 shrink-0" />{AGENCY.email}</span>
+          </p>
         </div>
       </div>
     </footer>
