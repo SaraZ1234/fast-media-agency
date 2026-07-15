@@ -155,7 +155,7 @@ export function Marquee() {
   const items = ['Social Media', 'Google Ads', 'Meta Ads', 'SEO', 'Web Development', 'Branding', 'Video Editing', 'Graphic Design'];
   const loop = [...items, ...items];
   return (
-    <div className="border-y border-border bg-primary/5 py-4">
+    <div className="overflow-hidden border-y border-border bg-primary/5 py-4">
       <div className="flex w-max animate-marquee gap-10 whitespace-nowrap">
         {loop.map((t, i) => (
           <span key={i} className="flex items-center gap-10 font-display text-lg font-semibold text-muted-foreground">
