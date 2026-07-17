@@ -6,6 +6,7 @@ import * as Icons from 'lucide-react';
 import { AGENCY, SERVICES, SERVICE_DETAILS, PORTFOLIO, BLOG, PRICING, TESTIMONIALS } from '@/data/site';
 // import { Hero, Marquee, About, ServicesGrid, WhyUs, Industries, Process, PortfolioGrid, Pricing, BlogGrid, FAQ, CTA, SectionHead, Reveal, Eyebrow } from '@/components/sections';
 import { Hero, Marquee, TrustBar, About, ServicesGrid, WhyUs, Industries, Process, PortfolioGrid, Testimonials, Team, Pricing, BlogGrid, FAQ, CTA, SectionHead, Reveal, Eyebrow } from "@/sections";
+import AdvertisingPlatformsGuide from "@/components/ui/AdvertisingPlatformsGuide";
 
 
 function CtaButtons({ light }) {
@@ -51,16 +52,18 @@ export function HomePage() {
       <Hero />
       <Marquee />
       <TrustBar />
-      <About />
+      
+      {/* <About />
       <ServicesGrid />
       <WhyUs />
-      <Industries />
-      <Process />
-      <PortfolioGrid />
+      <Industries /> */}
+      {/* <Process /> */}
+      {/* <PortfolioGrid />
       <Testimonials />
-      <Pricing />
-      <FAQ />
-      <CTA />
+      <Pricing /> */}
+      <ServicesGrid />
+      <AdvertisingPlatformsGuide />
+      {/* <CTA /> */}
     </>
   );
 }
@@ -79,15 +82,29 @@ export function AboutPage() {
 }
 
 export function ServicesPage() {
-  return (<>
-    <Seo title="Our Services" desc="Explore FAST MEDIA AGENCY services: social media, Google Ads, Meta Ads, SEO, web development, graphic design, video editing and branding." />
-    <PageHero eyebrow="Our Services" title="Everything you need to grow" sub="Eight core services engineered to attract, convert and retain customers." />
-    <ServicesGrid full hideHead />
-    <Industries />
-    <CTA />
-  </>);
-}
+  return (
+    <>
+      <Seo
+        title="Our Services"
+        desc="Explore FAST MEDIA AGENCY services: social media, Google Ads, Meta Ads, SEO, web development, graphic design, video editing and branding."
+      />
 
+      <PageHero
+        eyebrow="Our Services"
+        title="Everything you need to grow"
+        sub="Eight core services engineered to attract, convert and retain customers."
+      />
+
+      <ServicesGrid full hideHead />
+
+      <WhyUs />
+
+      <Process />
+
+      <CTA />
+    </>
+  );
+}
 export function PortfolioPage() {
   const cats = ['All', ...Array.from(new Set(PORTFOLIO.map((p) => p.industry)))];
   const [active, setActive] = useState('All');

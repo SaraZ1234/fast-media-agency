@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import * as Icons from 'lucide-react';
 import { AGENCY, HERO_IMG, ABOUT_IMG, SERVICES, WHY_US, INDUSTRIES, PROCESS, STATS, PRICING, PORTFOLIO, FAQS, BLOG, CLIENTS, TESTIMONIALS, TEAM } from '@/data/site';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export function Reveal({ children, delay = 0, className = '' }) {
   return (
@@ -315,30 +315,379 @@ export function PortfolioGrid() {
 }
 
 export function Pricing({ hideHead }) {
+  const [openFaq, setOpenFaq] = useState(0);
+
+  const FEATURE_ROWS = [
+    { label: "Projects", values: ["3 active", "Unlimited", "Unlimited"] },
+    { label: "Team seats", values: ["1", "Up to 10", "Unlimited"] },
+    { label: "Storage", values: ["5 GB", "250 GB", "Unlimited"] },
+    { label: "Priority support", values: [false, true, true] },
+    { label: "Custom integrations", values: [false, true, true] },
+    { label: "Dedicated account manager", values: [false, false, true] },
+    { label: "SLA & uptime guarantee", values: [false, false, true] },
+    { label: "SSO & advanced security", values: [false, false, true] },
+  ];
+
+  const WHY_CHOOSE = [
+    { title: "Fast onboarding", desc: "Go from signup to fully configured in under a day, guided every step of the way." },
+    { title: "Transparent pricing", desc: "No surprise invoices. What you see on this page is exactly what you pay." },
+    { title: "Built to scale", desc: "Upgrade, downgrade, or add seats anytime as your team and needs grow." },
+    { title: "Real human support", desc: "Talk to people who actually know your account, not a ticket queue." },
+  ];
+
+  const PROCESS_STEPS = [
+    { step: "01", title: "Discovery call", desc: "We learn about your goals, constraints, and timeline before anything else." },
+    { step: "02", title: "Plan & scope", desc: "You get a clear proposal with milestones, deliverables, and pricing." },
+    { step: "03", title: "Build & iterate", desc: "Regular check-ins and demos keep you in the loop as work progresses." },
+    { step: "04", title: "Launch & support", desc: "We ship, monitor, and stay on hand for the adjustments that follow." },
+  ];
+
+  const WHATS_INCLUDED = [
+    "Dedicated onboarding session",
+    "Access to all core features",
+    "Regular product updates",
+    "Community & knowledge base access",
+    "Usage analytics dashboard",
+    "Cancel or change plans anytime",
+  ];
+
+  const ADDONS = [
+    { name: "Extra seats", price: "$9", period: "/seat/mo", desc: "Add teammates beyond your plan's included limit." },
+    { name: "Priority onboarding", price: "$299", period: "one-time", desc: "White-glove setup with a dedicated specialist." },
+    { name: "Advanced analytics", price: "$49", period: "/mo", desc: "Deeper reporting, exports, and custom dashboards." },
+  ];
+
+  const LOCAL_FAQS = [
+    { q: "Can I switch plans later?", a: "Yes, you can upgrade or downgrade at any time. Changes are prorated automatically on your next invoice." },
+    { q: "Is there a free trial?", a: "Every plan includes a 14-day trial with full access, no credit card required to start." },
+    { q: "What payment methods do you accept?", a: "We accept all major credit cards, along with invoicing for annual Enterprise plans." },
+    { q: "Do you offer refunds?", a: "If you're not satisfied within the first 30 days, reach out and we'll issue a full refund." },
+    { q: "Can I cancel anytime?", a: "Absolutely. There are no lock-in contracts, and cancelling takes effect at the end of your billing cycle." },
+  ];
+
+  const TRUST_BADGES = ["SOC 2 Certified", "GDPR Compliant", "99.9% Uptime SLA", "256-bit Encryption"];
+
+  const fadeUp = {
+    hidden: { opacity: 0, y: 24 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+  };
+
+  const staggerParent = {
+    hidden: {},
+    show: { transition: { staggerChildren: 0.08 } },
+  };
+
   return (
     <section className="mx-auto max-w-[90rem] px-5 py-20 lg:px-10">
-      {!hideHead && <SectionHead center eyebrow="Pricing" title="Transparent plans that scale with you" sub="No hidden fees. Cancel anytime. Custom quotes available." />}
-      <div className={`grid gap-6 lg:grid-cols-3 ${hideHead ? '' : 'mt-12'}`}>
+      {!hideHead && (
+        <SectionHead
+          center
+          eyebrow="Pricing"
+          title="Transparent plans that scale with you"
+          sub="No hidden fees. Cancel anytime. Custom quotes available."
+        />
+      )}
+
+      {/* Pricing cards */}
+      <div className={`grid gap-6 lg:grid-cols-3 ${hideHead ? "" : "mt-12"}`}>
         {PRICING.map((p, i) => (
           <Reveal key={p.name} delay={i * 0.08}>
-            <div className={`relative h-full rounded-3xl border p-8 ${p.featured ? 'border-primary bg-primary text-primary-foreground shadow-2xl shadow-primary/30 lg:-mt-4' : 'border-border bg-card'}`}>
-              {p.featured && <span className="absolute right-6 top-6 rounded-full bg-accent px-3 py-1 text-xs font-bold text-white">Most Popular</span>}
+            <motion.div
+              whileHover={{ y: -6 }}
+              transition={{ type: "spring", stiffness: 300, damping: 22 }}
+              className={`relative flex h-full flex-col rounded-3xl border p-8 ${
+                p.featured
+                  ? "border-primary bg-primary text-primary-foreground shadow-2xl shadow-primary/30 lg:-mt-4"
+                  : "border-border bg-card"
+              }`}
+            >
+              {p.featured && (
+                <span className="absolute right-6 top-6 rounded-full bg-accent px-3 py-1 text-xs font-bold text-white">
+                  Most Popular
+                </span>
+              )}
+
               <h3 className="font-display text-xl font-bold">{p.name}</h3>
-              <p className={`mt-1 text-sm ${p.featured ? 'text-primary-foreground/70' : 'text-muted-foreground'}`}>{p.desc}</p>
-              <div className="mt-5 flex items-end gap-1"><span className="font-display text-4xl font-extrabold">{p.price}</span><span className={p.featured ? 'text-primary-foreground/70' : 'text-muted-foreground'}>{p.period}</span></div>
-              <ul className="mt-6 space-y-3">
+              <p className={`mt-1 text-sm ${p.featured ? "text-primary-foreground/70" : "text-muted-foreground"}`}>
+                {p.desc}
+              </p>
+
+              <div className="mt-5 flex items-end gap-1">
+                <span className="font-display text-4xl font-extrabold">{p.price}</span>
+                <span className={p.featured ? "text-primary-foreground/70" : "text-muted-foreground"}>{p.period}</span>
+              </div>
+
+              {p.billedNote && (
+                <p className={`mt-1 text-xs ${p.featured ? "text-primary-foreground/60" : "text-muted-foreground"}`}>
+                  {p.billedNote}
+                </p>
+              )}
+
+              {p.bestFor && (
+                <p
+                  className={`mt-4 text-xs font-semibold uppercase tracking-wide ${
+                    p.featured ? "text-primary-foreground/70" : "text-accent"
+                  }`}
+                >
+                  {p.bestFor}
+                </p>
+              )}
+
+              <div className={`mt-6 h-px w-full ${p.featured ? "bg-white/15" : "bg-border"}`} />
+
+              <ul className="mt-6 flex-1 space-y-3">
                 {p.features.map((f) => (
-                  <li key={f} className="flex items-center gap-2.5 text-sm"><Icons.Check className={`h-4 w-4 ${p.featured ? 'text-accent-foreground' : 'text-accent'}`} />{f}</li>
+                  <li key={f} className="flex items-center gap-2.5 text-sm">
+                    <Icons.Check className={`h-4 w-4 shrink-0 ${p.featured ? "text-accent-foreground" : "text-accent"}`} />
+                    {f}
+                  </li>
+                ))}
+                {p.notIncluded?.map((f) => (
+                  <li
+                    key={f}
+                    className={`flex items-center gap-2.5 text-sm ${
+                      p.featured ? "text-primary-foreground/40" : "text-muted-foreground/50"
+                    }`}
+                  >
+                    <Icons.X className="h-4 w-4 shrink-0" />
+                    <span className="line-through">{f}</span>
+                  </li>
                 ))}
               </ul>
-              <Link to="/contact" className={`mt-8 block rounded-full px-6 py-3 text-center font-semibold transition-transform hover:-translate-y-0.5 ${p.featured ? 'bg-white text-primary' : 'bg-primary text-primary-foreground'}`}>Get Started</Link>
-            </div>
+
+              <Link
+                to="/contact"
+                className={`mt-8 block rounded-full px-6 py-3 text-center font-semibold transition-transform hover:-translate-y-0.5 ${
+                  p.featured ? "bg-white text-primary" : "bg-primary text-primary-foreground"
+                }`}
+              >
+                {p.cta || "Get Started"}
+              </Link>
+
+              {p.footnote && (
+                <p className={`mt-3 text-center text-xs ${p.featured ? "text-primary-foreground/60" : "text-muted-foreground"}`}>
+                  {p.footnote}
+                </p>
+              )}
+            </motion.div>
           </Reveal>
         ))}
       </div>
+
+      {/* Trust badges */}
+      <Reveal delay={0.1}>
+        <div className="mt-14 flex flex-wrap items-center justify-center gap-x-10 gap-y-4 border-y border-border py-6">
+          {TRUST_BADGES.map((b) => (
+            <div key={b} className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
+              <Icons.Check className="h-4 w-4 text-accent" />
+              {b}
+            </div>
+          ))}
+        </div>
+      </Reveal>
+
+      {/* What's included */}
+      <div className="mt-24">
+        <SectionHead center eyebrow="What's Included" title="Every plan starts strong" sub="The foundation that ships with all of our plans, no matter your tier." />
+        <motion.div
+          variants={staggerParent}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+          className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+        >
+          {WHATS_INCLUDED.map((item) => (
+            <motion.div
+              key={item}
+              variants={fadeUp}
+              className="flex items-center gap-3 rounded-2xl border border-border bg-card p-5"
+            >
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent/10 text-accent">
+                <Icons.Check className="h-4 w-4" />
+              </span>
+              <span className="text-sm font-medium">{item}</span>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+
+      {/* Why choose us */}
+      <div className="mt-24">
+        <SectionHead center eyebrow="Why Choose Us" title="Built for teams that move fast" sub="A partner that treats your roadmap like our own." />
+        <motion.div
+          variants={staggerParent}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+          className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
+        >
+          {WHY_CHOOSE.map((w) => (
+            <motion.div key={w.title} variants={fadeUp} className="rounded-3xl border border-border bg-card p-7">
+              <h4 className="font-display text-lg font-bold">{w.title}</h4>
+              <p className="mt-2 text-sm text-muted-foreground">{w.desc}</p>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+
+      {/* Development process timeline */}
+      <div className="mt-24">
+        <SectionHead center eyebrow="Our Process" title="How we get you set up" sub="A straightforward path from first call to live product." />
+        <div className="relative mt-16 grid gap-10 lg:grid-cols-4">
+          <div className="absolute left-0 right-0 top-6 hidden h-px bg-border lg:block" />
+          {PROCESS_STEPS.map((s, i) => (
+            <Reveal key={s.step} delay={i * 0.1}>
+              <div className="relative flex flex-col items-start">
+                <span className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary font-display text-sm font-bold text-primary-foreground">
+                  {s.step}
+                </span>
+                <h4 className="mt-5 font-display text-lg font-bold">{s.title}</h4>
+                <p className="mt-2 text-sm text-muted-foreground">{s.desc}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+
+      {/* Feature comparison table */}
+      <div className="mt-24">
+        <SectionHead center eyebrow="Compare Plans" title="See exactly what you get" sub="A full breakdown of every feature across all three plans." />
+        <Reveal delay={0.1}>
+          <div className="mt-12 overflow-x-auto rounded-3xl border border-border bg-card">
+            <table className="w-full min-w-[640px] border-collapse text-sm">
+              <thead>
+                <tr className="border-b border-border">
+                  <th className="p-5 text-left font-display text-base font-bold">Feature</th>
+                  {PRICING.map((p) => (
+                    <th
+                      key={p.name}
+                      className={`p-5 text-center font-display text-base font-bold ${p.featured ? "text-accent" : ""}`}
+                    >
+                      {p.name}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {FEATURE_ROWS.map((row, ri) => (
+                  <tr key={row.label} className={ri % 2 === 0 ? "bg-transparent" : "bg-muted/30"}>
+                    <td className="p-5 font-medium text-muted-foreground">{row.label}</td>
+                    {row.values.map((v, vi) => (
+                      <td key={vi} className="p-5 text-center">
+                        {typeof v === "boolean" ? (
+                          v ? (
+                            <Icons.Check className="mx-auto h-4 w-4 text-accent" />
+                          ) : (
+                            <Icons.X className="mx-auto h-4 w-4 text-muted-foreground/40" />
+                          )
+                        ) : (
+                          <span className="font-medium">{v}</span>
+                        )}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Reveal>
+      </div>
+
+      {/* Add-ons */}
+      <div className="mt-24">
+        <SectionHead center eyebrow="Add-ons" title="Optional extras" sub="Tailor any plan further with these add-ons, added anytime." />
+        <motion.div
+          variants={staggerParent}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+          className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+        >
+          {ADDONS.map((a) => (
+            <motion.div
+              key={a.name}
+              variants={fadeUp}
+              whileHover={{ y: -4 }}
+              className="flex flex-col rounded-3xl border border-border bg-card p-7"
+            >
+              <h4 className="font-display text-lg font-bold">{a.name}</h4>
+              <div className="mt-3 flex items-end gap-1">
+                <span className="font-display text-2xl font-extrabold">{a.price}</span>
+                <span className="text-sm text-muted-foreground">{a.period}</span>
+              </div>
+              <p className="mt-3 flex-1 text-sm text-muted-foreground">{a.desc}</p>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+
+      {/* FAQ */}
+      {/* <div className="mt-24">
+        <SectionHead center eyebrow="FAQ" title="Questions, answered" sub="Everything you need to know before you get started." />
+        <div className="mx-auto mt-12 max-w-3xl space-y-4">
+          {LOCAL_FAQS.map((item, i) => {
+            const isOpen = openFaq === i;
+            return (
+              <div key={item.q} className="rounded-2xl border border-border bg-card">
+                <button
+                  onClick={() => setOpenFaq(isOpen ? -1 : i)}
+                  className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
+                >
+                  <span className="font-display text-base font-semibold">{item.q}</span>
+                  <motion.span
+                    animate={{ rotate: isOpen ? 45 : 0 }}
+                    transition={{ duration: 0.25 }}
+                    className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent/10 text-accent"
+                  >
+                    <Icons.Plus className="h-4 w-4" />
+                  </motion.span>
+                </button>
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <p className="px-6 pb-5 text-sm text-muted-foreground">{item.a}</p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })}
+        </div>
+      </div> */}
+
+      {/* Final CTA */}
+      {/* <Reveal delay={0.1}>
+        <div className="mt-24 flex flex-col items-center rounded-3xl border border-primary bg-primary px-8 py-16 text-center text-primary-foreground">
+          <h3 className="font-display text-3xl font-extrabold sm:text-4xl">Ready to get started?</h3>
+          <p className="mt-3 max-w-xl text-primary-foreground/70">
+            Join the teams already scaling with us. Start your free trial today, no credit card required.
+          </p>
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+            <Link
+              to="/contact"
+              className="rounded-full bg-white px-8 py-3 text-center font-semibold text-primary transition-transform hover:-translate-y-0.5"
+            >
+              Get Started
+            </Link>
+            <Link
+              to="/contact"
+              className="rounded-full border border-white/30 px-8 py-3 text-center font-semibold transition-transform hover:-translate-y-0.5"
+            >
+              Talk to Sales
+            </Link>
+          </div>
+        </div>
+      </Reveal> */}
     </section>
   );
 }
+
 
 export function BlogGrid() {
   return (

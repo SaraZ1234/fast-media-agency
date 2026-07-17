@@ -3,6 +3,7 @@ import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
 import ScrollToTop from './components/ScrollToTop';
 import Layout from './components/Layout';
 import { HomePage, AboutPage, ServicesPage, ServiceDetailPage, PortfolioPage, PortfolioDetailPage, PricingPage, BlogPage, BlogDetailPage, FaqPage, ContactPage, PrivacyPage, TermsPage } from './pages/pages';
+import AdvertisingPlatformsGuide from './components/ui/AdvertisingPlatformsGuide';
 
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
           <Route path="/portfolio/:slug" element={<PortfolioDetailPage />} />
           <Route path="/pricing" element={<PricingPage />} />
           <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/:slug" element={<BlogDetailPage />} />
+          <Route path="/blog/digital-advertising-platforms" element={<AdvertisingPlatformsGuide />} />
           <Route path="/blog/:slug" element={<BlogDetailPage />} />
           <Route path="/faq" element={<FaqPage />} />
           <Route path="/contact" element={<ContactPage />} />
