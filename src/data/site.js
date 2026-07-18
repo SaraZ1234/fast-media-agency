@@ -1282,13 +1282,74 @@ export const TEAM = [
 ];
 
 export const FAQS = [
-  { q: 'How soon will I see results?', a: 'Paid campaigns can drive leads within the first week. SEO and organic growth typically show meaningful movement in 2–4 months as we compound results.' },
-  { q: 'Do you work with small businesses?', a: 'Absolutely. Our Starter plans are designed for local and small businesses, and we scale with you as you grow.' },
-  { q: 'Are there long-term contracts?', a: 'We offer flexible monthly plans. Most clients stay because of results, not lock-in contracts.' },
-  { q: 'Who owns the ad accounts and website?', a: 'You do. Everything we build and manage stays under your ownership, always.' },
-  { q: 'Do you provide monthly reports?', a: 'Yes. You receive clear, jargon-free performance reports so you always know your return.' },
-  { q: 'Which industries do you specialise in?', a: 'We serve 14+ industries including healthcare, real estate, restaurants, e-commerce, finance and more.' },
+  {
+    cat: 'Results & Timeline',
+    q: 'How soon will I see results?',
+    a: `Timelines depend on the channel. Paid campaigns (Google Ads, Meta, TikTok) can start driving qualified leads within the first week once tracking and targeting are dialed in, since we're buying visibility rather than earning it. SEO and organic growth work differently — search engines need time to trust and rank new or improved content, so most clients see meaningful movement in rankings and traffic within 2–4 months, with results compounding significantly from month 4 onward. We'll give you a realistic timeline specific to your industry and starting point during onboarding, not a generic promise.`,
+  },
+  {
+    cat: 'Results & Timeline',
+    q: 'How do you measure success?',
+    a: `We tie every campaign to a business outcome, not a vanity metric. That usually means cost per qualified lead, booked calls, revenue, or return on ad spend — agreed with you before we start, so there's never ambiguity about what "working" means. Every report ties back to the specific KPI we set together at kickoff.`,
+  },
+  {
+    cat: 'Getting Started',
+    q: 'Do you work with small businesses?',
+    a: `Absolutely — small and local businesses make up a large share of our client base. Our Starter plans are purpose-built for smaller budgets and simpler needs, without stripping away the strategy and reporting that make campaigns actually work. As your business grows, we scale the plan alongside you rather than forcing a jump to an enterprise package before you're ready.`,
+  },
+  {
+    cat: 'Getting Started',
+    q: 'What happens during onboarding?',
+    a: `Onboarding typically takes 1–2 weeks. We start with a discovery call to understand your goals, audience, and current marketing setup, then run a full audit of your existing accounts, website, and analytics. From there we build a tailored strategy document, get your sign-off, and begin execution — you'll always know exactly what's being built and why before it goes live.`,
+  },
+  {
+    cat: 'Contracts & Ownership',
+    q: 'Are there long-term contracts?',
+    a: `No. We offer flexible monthly plans with no forced lock-in period. Most agencies rely on long contracts because they're worried clients will leave — we'd rather earn that relationship every single month through results. You can pause or cancel with standard notice at any time, though most clients stay well past the first year simply because the numbers keep improving.`,
+  },
+  {
+    cat: 'Contracts & Ownership',
+    q: 'Who owns the ad accounts and website?',
+    a: `You do — fully and always. Every ad account, analytics property, website, and piece of creative we build lives under your ownership from day one. If you ever decide to leave, you walk away with everything intact: no held-hostage accounts, no rebuilding from scratch, no starting over with a new agency.`,
+  },
+  {
+    cat: 'Contracts & Ownership',
+    q: 'What if I want to cancel?',
+    a: `Simply give us the notice period outlined in your plan (typically 30 days), and we'll wrap up any in-flight work, hand over full account access and documentation, and transition everything cleanly. There are no penalties, no exit fees, and no clawback of assets we've built for you.`,
+  },
+  {
+    cat: 'Reporting & Communication',
+    q: 'Do you provide monthly reports?',
+    a: `Yes. Every client receives a clear, jargon-free performance report each month covering the metrics that actually matter for your business — leads, cost per acquisition, traffic quality, ranking movement, and revenue impact where trackable. We also include a plain-language summary of what changed, why, and what we're adjusting next, so you're never left decoding a dashboard on your own.`,
+  },
+  {
+    cat: 'Reporting & Communication',
+    q: 'Will I have a dedicated point of contact?',
+    a: `Yes. Every account is assigned a dedicated strategist who knows your business, goals, and history — you won't be bounced between a rotating cast of account managers. You can reach them directly via email or a scheduled call, and they coordinate the specialists (paid media, SEO, design, dev) working behind the scenes on your account.`,
+  },
+  {
+    cat: 'Industries & Fit',
+    q: 'Which industries do you specialise in?',
+    a: `We serve 14+ industries including healthcare, real estate, restaurants and hospitality, e-commerce, finance, professional services, home services, and more. Each industry comes with its own compliance considerations, buyer behavior, and seasonal patterns, and our strategists bring that context in from day one rather than applying a one-size-fits-all playbook.`,
+  },
+  {
+    cat: 'Industries & Fit',
+    q: 'What if my industry is highly regulated?',
+    a: `We have direct experience running compliant campaigns in regulated spaces like healthcare and finance, including navigating platform-specific ad policy restrictions, required disclaimers, and data-handling requirements. We'll flag any compliance considerations upfront during strategy so there are no surprises once campaigns go live.`,
+  },
+  {
+    cat: 'Pricing & Investment',
+    q: 'How is pricing structured?',
+    a: `Pricing is a combination of our management fee and your media budget (for paid channels), scaled to the size and complexity of your plan. We'll walk you through exact numbers based on your goals during a discovery call — there's no one-size-fits-all rate card, because a local single-location business and a multi-market e-commerce brand need very different levels of investment.`,
+  },
+  {
+    cat: 'Pricing & Investment',
+    q: 'Is there a minimum ad spend?',
+    a: `For paid media, we typically recommend a minimum monthly ad spend so the platform's algorithms have enough data to optimize effectively — spending too little often means paying more per result with less learning. We'll recommend a realistic starting budget for your specific goals and industry, and can build up from there as performance proves itself out.`,
+  },
 ];
+
+// ---- Expanded, detailed blog content ---------------------------------------
 
 export const BLOG_RAW = [
   {
@@ -1296,109 +1357,187 @@ export const BLOG_RAW = [
     title: '7 Google Ads Mistakes Draining Your Budget',
     cat: 'Google Ads',
     date: 'Jul 2, 2026',
-    read: '6 min',
+    read: '9 min',
     author: 'Sara Malik',
     excerpt: 'The most common Google Ads mistakes that quietly waste budget, and exactly how to fix each one.',
-    content: `Google Ads can drive high-intent leads fast, but without strict account hygiene, it quickly turns into a money pit. Here are the seven costliest errors advertisers make—and how to fix them immediately.
+    content: `Google Ads can drive high-intent leads faster than almost any other channel, but without strict account hygiene it quietly turns into a money pit. Most accounts we audit are bleeding 20–40% of spend on avoidable errors. Here are the seven costliest mistakes advertisers make, and the exact fix for each.
 
 ### 1. Broad Match Without Smart Bidding Safeguards
-Using broad match keywords without Smart Bidding (Target CPA/ROAS) gives Google freedom to match your ads with loosely related, non-converting queries.
-- **Fix:** Use **Phrase Match** or **Exact Match** for manual bidding strategies. Ensure 30+ conversions/month before testing Broad Match on Smart Bidding.
+Using broad match keywords without Smart Bidding (Target CPA/ROAS) gives Google the freedom to match your ads with loosely related, non-converting queries. We regularly see broad match campaigns spending 3x more per conversion than phrase or exact match equivalents in the same account.
+- **Fix:** Use **Phrase Match** or **Exact Match** whenever you're on manual bidding. Only test Broad Match once your campaign has 30+ conversions/month feeding Smart Bidding, and even then monitor search terms weekly for the first month.
+- **Why it works:** Smart Bidding needs conversion signal density to make good real-time auction decisions. Without it, broad match is essentially a blank check.
 
 ### 2. Ignoring Negative Keyword Lists
-Not building negative keyword lists means paying for zero-intent traffic.
-> **Pro Tip:** Set account-level negative lists for generic terms like *"free"*, *"cheap"*, *"jobs"*, *"courses"*, and *"template"*.
+Not building negative keyword lists means paying for zero-intent traffic — job seekers, DIY researchers, and bargain hunters who were never going to convert.
+> **Pro Tip:** Set account-level negative lists for generic terms like *"free"*, *"cheap"*, *"jobs"*, *"courses"*, and *"template"*, then layer campaign-specific negatives from your search terms report every week.
+
+Run this as a recurring calendar task, not a one-time setup. Search behavior shifts seasonally, and a list built in January will miss the junk queries that show up in June.
 
 ### 3. Mixing Brand and Non-Brand Traffic
-Branded queries skew CTR and ROAS, masking poor non-brand performance.
-- **Fix:** Split branded and non-branded keywords into separate, dedicated campaigns.
+Branded queries convert at 5-10x the rate of non-branded queries and cost a fraction as much per click. When they sit in the same campaign, they mask genuinely poor non-brand performance and skew your blended ROAS into looking healthier than it is.
+- **Fix:** Split branded and non-branded keywords into separate, dedicated campaigns with independent budgets and bid strategies.
+- **Bonus:** This also protects your non-brand budget from being cannibalized by cheap, already-warm branded clicks late in the month.
 
 ### 4. Poor Landing Page Relevance & Quality Score
-Sending paid traffic to a generic homepage lowers Quality Score and inflates your Cost Per Click (CPC). Send traffic to high-converting, topic-specific landing pages instead.
+Sending paid traffic to a generic homepage lowers Quality Score and inflates your Cost Per Click (CPC), sometimes by 30-50%. Google rewards message match between ad copy, keyword, and landing page content.
+- Build dedicated, topic-specific landing pages for each ad group cluster.
+- Mirror the exact language from your top-performing ad headlines in the landing page H1.
+- Strip unrelated navigation that gives visitors an exit ramp before they convert.
 
 ### 5. Neglecting Location Targeting Settings
-Google defaults to *"Presence or Interest"*. 
-- **Fix:** Change location options to **"Presence: People in or regularly in your targeted locations"** to avoid global accidental clicks.
+Google defaults every campaign to *"Presence or Interest,"* which serves your ads to people merely searching about a location, not physically there.
+- **Fix:** Change location options to **"Presence: People in or regularly in your targeted locations"** to avoid global accidental clicks and wasted spend on unqualified geographies.
+- Double-check this setting after every campaign duplication — it silently resets more often than you'd expect.
 
 ### 6. Overlooking Ad Assets (Extensions)
-Skipping sitelinks, callouts, and structured snippets reduces ad rank and visual real estate.
+Skipping sitelinks, callouts, structured snippets, and images reduces ad rank and cedes valuable visual real estate to competitors. Ads with a full set of assets typically see meaningfully higher CTR than bare-bones ads in the same auction.
+1. Add at least 6 sitelinks with unique descriptions.
+2. Use callouts for trust signals: "24/7 Support," "Free Consultation," "5-Star Rated."
+3. Enable image extensions where eligible — visual ads consistently outperform text-only in mixed placements.
 
 ### 7. Tracking Primary Conversions Incorrectly
-Optimizing for secondary events (page views, button hovers) misguides algorithm learning. Track revenue-generating actions strictly.`
+Optimizing for secondary events (page views, button hovers, scroll depth) misguides the algorithm's learning and trains it to chase the wrong audience entirely.
+- Track revenue-generating actions strictly: purchases, qualified leads, booked calls.
+- Mark micro-conversions (newsletter signups, PDF downloads) as secondary, not primary, so Smart Bidding doesn't optimize toward them.
+- Audit your conversion actions in Google Ads every quarter — duplicate or stale conversion tags are one of the most common silent budget killers we find in audits.
+
+Fixing even three or four of these issues typically recovers double-digit percentage points of wasted spend within the first billing cycle.`
   },
   {
     slug: 'how-to-build-a-content-calendar-that-converts',
     title: 'How to Build a Content Calendar That Converts',
     cat: 'Social Media',
     date: 'Jun 24, 2026',
-    read: '8 min',
+    read: '10 min',
     author: 'Omar Haddad',
     excerpt: 'A repeatable framework for planning social content that drives engagement and leads, not just likes.',
-    content: `Consistent publishing is easy; publishing content that moves prospects down the sales funnel requires a strategic blueprint.
+    content: `Consistent publishing is easy. Publishing content that actually moves prospects down the sales funnel requires a strategic blueprint — not a random grid of "inspirational" quotes and product shots.
 
 ### The 4-Pillar Content Framework
-1. **Authority Building (30%):** Case studies, client proof, breakdown of industry data.
-2. **Problem Awareness (30%):** Educational content addressing core audience pain points.
-3. **Culture & Connection (20%):** Founder stories, behind-the-scenes, perspective posts.
-4. **Direct Conversion (20%):** Clear, actionable calls-to-action (CTAs) for your services.
+Every high-performing social calendar we manage is built on four content pillars, weighted deliberately so the feed never feels like a single long sales pitch.
+1. **Authority Building (30%):** Case studies, client proof, breakdowns of industry data, and original research that positions you as the expert people trust before they're ready to buy.
+2. **Problem Awareness (30%):** Educational content addressing the core pain points your audience is actively searching for — "why is X happening," "how to fix Y."
+3. **Culture & Connection (20%):** Founder stories, behind-the-scenes footage, team spotlights, and perspective posts that humanize the brand and build parasocial trust over time.
+4. **Direct Conversion (20%):** Clear, actionable calls-to-action for your services — offers, testimonials with a CTA, limited-time promotions.
 
 ### Batch Production Workflow
-- **Monday:** Strategy & Hook Development
-- **Tuesday:** Copywriting & Scripting
-- **Wednesday:** Design & Video Editing
-- **Thursday:** Scheduling & Link Tracking (UTMs)`
+Producing content daily is unsustainable for most teams. Instead, batch an entire month's worth of content in a single focused week using this rhythm:
+- **Monday:** Strategy & hook development — mine comments, DMs, and sales calls for the exact language your audience uses about their problems.
+- **Tuesday:** Copywriting & scripting — draft captions, hooks, and video scripts for the whole batch in one sitting to keep voice consistent.
+- **Wednesday:** Design & video editing — produce all visual assets together so your brand system stays cohesive across the month.
+- **Thursday:** Scheduling & link tracking (UTMs) — load everything into your scheduler and tag every link so you can trace which pillar actually drives pipeline.
+
+> **Pro Tip:** Review performance by pillar, not by individual post. A single viral culture post can mask the fact that your conversion pillar is underperforming — track each pillar's engagement and click-through rate separately every month.
+
+### Measuring What Actually Matters
+Likes and views are vanity metrics unless they're tied to a downstream action. For each pillar, track:
+- Save and share rate (signals genuine value, strongly correlated with algorithmic reach)
+- Profile visits and link clicks (signals purchase intent)
+- DM and comment conversion rate (signals sales-readiness)
+
+A calendar that's balanced across all four pillars, tracked by outcome rather than vanity metric, consistently outperforms accounts that post more frequently but without structure.`
   },
   {
     slug: 'local-seo-in-2026-the-complete-playbook',
     title: 'Local SEO in 2026: The Complete Playbook',
     cat: 'SEO',
     date: 'Jun 10, 2026',
-    read: '11 min',
+    read: '12 min',
     author: 'Sara Malik',
     excerpt: 'Everything a local business needs to dominate Google Maps and local search this year.',
-    content: `Local search intent has evolved. To win the Google Map Pack in 2026, implement these essential tactics.
+    content: `Local search intent has evolved dramatically. AI-powered search summaries now sit above the traditional Map Pack for many queries, which means the businesses winning in 2026 are optimizing for both algorithmic ranking factors and AI-readable structured data. Here's the complete playbook.
 
 ### 1. Optimize Your Google Business Profile (GBP)
-- **Primary Category:** Match your exact core service.
-- **Photo Cadence:** Add high-quality, authentic photos weekly.
-- **Services Tab:** List all services with detailed descriptions and pricing.
+Your GBP is still the single highest-leverage local SEO asset you own.
+- **Primary Category:** Match your exact core service — not a broad umbrella category. Precision here directly affects which searches you're eligible to rank for.
+- **Photo Cadence:** Add high-quality, authentic photos weekly. Profiles with fresh photo activity are shown more consistently to correlate with higher engagement in Google's local algorithm.
+- **Services Tab:** List every service with detailed descriptions and transparent pricing where possible — vague listings underperform specific ones.
+- **Q&A Section:** Seed and answer your own frequently asked questions before customers do; unanswered public questions erode trust signals.
 
 ### 2. Review Velocity & Local Citations
-Ensure your Name, Address, and Phone number (NAP) match perfectly across Yelp, Apple Maps, and local directories. Encourage a steady velocity of detailed customer reviews containing service-specific keywords.`
+Ensure your Name, Address, and Phone number (NAP) match perfectly across Yelp, Apple Maps, Bing Places, and industry-specific directories. Inconsistent NAP data is one of the most common — and most overlooked — causes of local ranking stagnation.
+- Encourage a steady velocity of detailed, keyword-rich customer reviews rather than a single burst followed by silence.
+- Respond to every review, positive and negative, within 48 hours — response rate itself is a trust and engagement signal.
+- Audit citations quarterly using a tool like Moz Local or BrightLocal to catch drift before it compounds.
+
+### 3. Structured Data & AI-Readiness
+With AI Overviews and generative search summaries now surfacing local business information directly, structured data has become non-negotiable.
+1. Implement LocalBusiness schema markup on every location page.
+2. Mark up service offerings, hours, and pricing explicitly so AI systems can parse and cite them accurately.
+3. Keep your website's service pages written in clear, direct, quotable language — the same clarity that helps a human skim also helps an AI summarize correctly.
+
+> **Pro Tip:** Create a dedicated landing page for every service-area suburb or neighborhood you genuinely serve, each with unique local content — never a duplicated template with a swapped city name.
+
+### 4. Link Building for Local Relevance
+Local backlinks from chambers of commerce, sponsorships, local news features, and community organizations carry disproportionate weight compared to generic national links. A handful of genuinely local, relevant links will consistently outperform a large volume of low-relevance directory submissions.
+
+Businesses that treat local SEO as an ongoing operational discipline — not a one-time setup — are the ones consistently holding the top three Map Pack positions through algorithm updates.`
   },
   {
     slug: 'why-your-website-is-losing-sales-and-how-to-fix-it',
     title: 'Why Your Website Is Losing Sales (And How to Fix It)',
     cat: 'Web Development',
     date: 'May 30, 2026',
-    read: '7 min',
+    read: '8 min',
     author: 'Daniel Reyes',
     excerpt: 'The conversion killers hiding on most business websites, and the quick wins that recover lost revenue.',
-    content: `A website without conversions is an expensive digital brochure. Fix these silent conversion killers:
+    content: `A website without conversions is an expensive digital brochure. After auditing hundreds of small business sites, the same handful of silent conversion killers show up again and again. Here's how to fix them.
 
 ### 1. Unclear Hero Section
-In 3 seconds, visitors must know:
+In the first 3 seconds, a visitor must know three things without scrolling:
 - What you offer
-- Who it helps
+- Who it's for
 - What step to take next
 
+If any of those three requires guessing, you lose a meaningful share of visitors before they ever engage with the rest of the page. Test your hero section on someone unfamiliar with your business — if they can't repeat back what you do in one sentence, rewrite it.
+
 ### 2. Mobile Speed & Friction
-Over 65% of web traffic is mobile. Optimize images to WebP/AVIF formats and defer non-essential scripts to prevent drop-offs.`
+Over 65% of web traffic is mobile, yet most sites are still designed desktop-first and adapted down.
+- Optimize images to WebP/AVIF formats to cut page weight dramatically without visible quality loss.
+- Defer non-essential scripts (chat widgets, tracking pixels, marketing tags) so they load after the critical content renders.
+- Aim for a Largest Contentful Paint under 2.5 seconds — every additional second of load time measurably increases bounce rate on mobile.
+
+### 3. Weak or Buried Calls-to-Action
+Many sites bury their primary CTA below multiple scrolls of generic copy, or dilute it with five competing buttons on a single page.
+> **Pro Tip:** Every page should have exactly one primary CTA repeated at the top, middle, and bottom — not five different asks competing for the same click.
+
+### 4. Missing Trust Signals
+Visitors who don't already know you need proof before they'll hand over contact information or payment details.
+1. Client logos or recognizable brand associations near the fold.
+2. Specific, named testimonials — not vague, unattributed praise.
+3. Transparent pricing or a clear next step, so visitors never feel like they're being funneled into a hidden sales call.
+
+### 5. Forms That Ask for Too Much
+Every additional form field measurably reduces completion rate. Audit your lead forms and remove any field that isn't strictly necessary to have the first conversation — you can always collect more information later in the sales process.
+
+Most of these fixes take a developer a day or two to implement, and the recovered conversion rate typically pays for the work within the first month.`
   },
   {
     slug: 'reels-that-actually-drive-revenue',
     title: 'Reels That Actually Drive Revenue',
     cat: 'Video',
     date: 'May 18, 2026',
-    read: '5 min',
+    read: '7 min',
     author: 'Omar Haddad',
     excerpt: 'How to make short-form video that does more than entertain, it sells.',
-    content: `Short-form video should drive customer acquisition, not just vanity views.
+    content: `Short-form video should drive customer acquisition, not just vanity views. Millions of views mean nothing if none of them convert into a lead, a booking, or a sale. Here's the blueprint we use to make Reels that actually move revenue.
 
 ### High-Converting Reel Blueprint
-- **Visual Hook (0-3s):** Bold statement or question on-screen.
-- **Core Value (3-20s):** Delivering one focused, practical takeaway.
-- **Direct CTA (End):** Explicit instruction ("Comment 'GROW' for the full strategy").`
+- **Visual Hook (0-3s):** Open with a bold statement or question on-screen text, not a slow logo intro. The algorithm and the viewer both decide whether to keep watching in the first three seconds.
+- **Core Value (3-20s):** Deliver one focused, practical takeaway — not five loosely related tips crammed into fifteen seconds. Density of value beats breadth every time.
+- **Direct CTA (End):** Give an explicit instruction, e.g. "Comment 'GROW' for the full strategy," rather than a vague "follow for more."
+
+### Why Most Business Reels Underperform
+The most common failure mode isn't production quality — it's trying to entertain and sell in the same breath, diluting both. Separate your content into two clear lanes:
+1. **Pure value Reels** that build trust and reach, with no direct sell at all.
+2. **Pure conversion Reels** that assume trust already exists and ask directly for the sale or the lead.
+
+Blending the two into a mediocre middle ground is the single most common reason Reels get views but no revenue.
+
+### Production Without Burning Out Your Team
+> **Pro Tip:** Batch-record a month of hooks in a single session using a consistent set on a consistent day — the biggest bottleneck for most teams isn't editing, it's the friction of setting up to film.
+
+Track performance by watch-through rate and click-through to link in bio, not just views. A Reel with fewer views but a high watch-through and click rate is doing more for your business than a viral clip that never converts.`
   },
   {
     slug: 'branding-on-a-budget-a-founders-guide',
@@ -1408,119 +1547,285 @@ Over 65% of web traffic is mobile. Optimize images to WebP/AVIF formats and defe
     read: '9 min',
     author: 'Layla Aziz',
     excerpt: 'Build a memorable brand without a huge budget using these practical, founder-tested steps.',
-    content: `Consistency beats a massive design budget every single time.
+    content: `Consistency beats a massive design budget every single time. Most founders assume branding means a large agency invoice; in reality, the businesses with the most recognizable brands usually built them through relentless, disciplined consistency, not spend.
 
 ### Core Essentials
-1. **Target Persona:** Solve problems for one ideal audience segment first.
-2. **Visual Uniformity:** Lock in 2 fonts, 3 primary brand colors, and apply them strictly.
-3. **Voice Consistency:** Document your tone across touchpoints—professional, direct, and human.`
+1. **Target Persona:** Solve problems for one ideal audience segment first. Trying to speak to everyone dilutes your visual and verbal identity into something forgettable — the strongest brands feel almost narrow at first.
+2. **Visual Uniformity:** Lock in 2 fonts, 3 primary brand colors, and apply them strictly across every touchpoint — website, invoices, social templates, email signatures. Document these in a one-page style sheet so anyone on your team can apply them correctly without asking.
+3. **Voice Consistency:** Document your tone across touchpoints — professional, direct, and human, for example — with three or four example sentences showing what that tone sounds like in practice.
+
+### The Assets That Actually Matter
+On a limited budget, prioritize in this order:
+- A clean, legible logo that works in a single color at small sizes (favicon, social avatar).
+- A consistent color and font system, applied everywhere, before spending on custom photography or illustration.
+- A short brand voice guide — three sentences on tone, three words you'd never use to describe yourself.
+
+> **Pro Tip:** Audit every customer touchpoint once a quarter — invoices, out-of-office replies, packaging inserts — for consistency. Inconsistency compounds silently and is far more damaging to brand trust than a slightly imperfect logo.
+
+### When to Invest More
+Once you have consistent revenue and a validated offer, that's the right moment to invest in custom photography, a refined visual identity, or a professional voice and messaging audit — not before. Spending on polish before the fundamentals are consistent is the most common way founders waste a branding budget.`
   },
   {
     slug: 'ai-search-geo-how-search-engines-are-changing-in-2026',
     title: 'AI Search & GEO: How Search Engines Are Changing in 2026',
     cat: 'SEO',
     date: 'Apr 28, 2026',
-    read: '10 min',
+    read: '11 min',
     author: 'Sara Malik',
     excerpt: 'Generative Engine Optimization is replacing traditional SEO tactics. Here is how to keep your content ranking.',
-    content: `Generative Engine Optimization (GEO) prioritizes entity relationships and authoritative direct answers.
+    content: `Generative Engine Optimization (GEO) prioritizes entity relationships and authoritative, directly quotable answers over the keyword-density tactics that dominated the last decade of SEO. If your content strategy hasn't adapted, your organic visibility is likely already eroding even if your rankings look stable on paper.
 
 ### Strategy Shifts
-- **Enforce E-E-A-T:** Emphasize real-world experience and primary research.
-- **Structured Schema:** Help AI engines parse your site structure instantly.
-- **Concise Summaries:** Format key takeaways clearly for LLM citation.`
+- **Enforce E-E-A-T:** Emphasize real-world experience and primary research — original data, first-hand case studies, and named expert authorship. AI systems increasingly favor content that demonstrates genuine first-hand experience over aggregated summaries of other sources.
+- **Structured Schema:** Help AI engines parse your site structure instantly with clean FAQ, HowTo, and Article schema — this is now closer to a requirement than a nice-to-have for being cited in AI-generated answers.
+- **Concise Summaries:** Format key takeaways clearly and near the top of the page for LLM citation — a direct, well-scoped answer in the first two paragraphs is far more likely to be pulled into a generative summary than the same information buried on page three of a long-form article.
+
+### Content Structure That Gets Cited
+1. Lead with a direct, one or two sentence answer to the core question before any narrative buildup.
+2. Follow with supporting detail, data, and nuance for readers who want depth.
+3. Use descriptive subheadings phrased as the actual questions your audience is asking — this mirrors how conversational search queries are structured.
+
+> **Pro Tip:** Track not just rankings but citation share — how often your brand or content is referenced inside AI-generated answers for your core queries. Several emerging tools now measure this directly, and it's becoming as important a KPI as traditional rank tracking.
+
+### What Doesn't Change
+Despite the shift, the fundamentals of genuine expertise, original research, and a real reputation in your industry still matter more than any technical trick. GEO rewards the same qualities good SEO always has — it simply changes the format that gets rewarded, not the substance required to earn it.`
   },
   {
     slug: 'email-automation-sequences-that-retain-high-ltv-customers',
     title: 'Email Automation Sequences That Retain High-LTV Customers',
     cat: 'Email Marketing',
     date: 'Apr 15, 2026',
-    read: '8 min',
+    read: '9 min',
     author: 'Layla Aziz',
     excerpt: 'Five essential automated lifecycle campaigns every e-commerce and B2B brand needs to set up today.',
-    content: `Automated lifecycle flows consistently deliver high ROI by messaging users at critical moments.
+    content: `Automated lifecycle flows consistently deliver some of the highest ROI of any marketing channel because they message the right person at exactly the moment they're most receptive — not on a broadcast schedule that ignores individual behavior.
 
 ### Critical Flows
-1. **Welcome Series:** Set expectations and introduce top offerings.
-2. **Abandoned Checkout:** Recover lost buying intent within 2–4 hours.
-3. **Post-Purchase Onboarding:** Drive repeat sales with tailored cross-sells.`
+1. **Welcome Series:** Set expectations and introduce your top offerings across three to five emails in the first week. This is the highest-engagement window a subscriber will ever give you — don't waste it on a single generic "thanks for signing up" email.
+2. **Abandoned Checkout:** Recover lost buying intent within 2–4 hours of abandonment, before the purchase intent cools. A short, direct nudge outperforms a delayed, heavily discounted one in most accounts we manage.
+3. **Post-Purchase Onboarding:** Drive repeat sales with tailored cross-sells based on the specific item purchased, not a generic "you might also like" block.
+4. **Win-Back Campaigns:** Re-engage customers who haven't purchased or opened an email in 60-90 days with a distinct tone and offer — treating them the same as an active subscriber typically underperforms.
+5. **Post-Purchase Review Requests:** Timed to arrive after the customer has actually had time to use the product, not immediately at checkout — timing meaningfully affects both response rate and review quality.
+
+### Segmentation Beats Volume
+> **Pro Tip:** A tightly segmented flow sent to 500 relevant subscribers will consistently outperform a broadcast blast sent to 50,000 unsegmented ones. Segment by purchase history, engagement recency, and stated preferences wherever your platform allows it.
+
+### Measuring Flow Performance
+Track each flow independently against its specific goal:
+- Welcome series: activation rate (first purchase within 14 days)
+- Abandoned checkout: recovery rate and recovered revenue
+- Post-purchase: repeat purchase rate within 90 days
+- Win-back: reactivation rate and unsubscribe rate
+
+Flows that are set up once and never revisited decay in performance over 12-18 months as your product line, pricing, and audience shift — treat them as living campaigns, reviewed and refreshed quarterly, not a one-time technical setup.`
   },
   {
     slug: 'the-modern-landing-page-blueprint-anatomy-of-a-30-percent-converter',
     title: 'The Modern Landing Page Blueprint: Anatomy of a 30% Converter',
     cat: 'Web Development',
     date: 'Apr 02, 2026',
-    read: '7 min',
+    read: '8 min',
     author: 'Daniel Reyes',
     excerpt: 'Visual breakdown of layout, copywriting hooks, and trust signals that turn cold traffic into paying clients.',
-    content: `High-converting landing pages eliminate choices and focus on one clear path.
+    content: `High-converting landing pages eliminate choices and focus on one clear path. Every element on the page should exist to move the visitor toward a single decision — anything that doesn't serve that goal is a distraction competing for attention it shouldn't have.
 
 ### Key Conversion Elements
-- **Outcome Headline:** Focus on the tangible result.
-- **Social Proof Above the Fold:** Display client logos or ratings immediately.
-- **Frictionless Form:** Keep form fields minimal to boost completion.`
+- **Outcome Headline:** Focus on the tangible result the visitor gets, not the feature you're proud of building. "Get 3x more qualified leads in 90 days" converts better than "Our AI-powered marketing platform."
+- **Social Proof Above the Fold:** Display client logos, ratings, or a specific results statistic immediately — visitors decide within seconds whether to trust the page enough to keep reading.
+- **Frictionless Form:** Keep form fields minimal to boost completion. Every field beyond name, email, and one qualifying question measurably reduces conversion rate.
+
+### Page Structure That Converts
+1. **Hero:** Outcome headline, one supporting sentence, single CTA, and immediate trust signal.
+2. **Problem Agitation:** Name the specific pain point your visitor is experiencing in language that mirrors how they'd describe it themselves.
+3. **Solution Walkthrough:** A short, visual breakdown of how your offer solves that exact problem — three steps maximum.
+4. **Proof:** Named testimonials, case study results, or before/after data.
+5. **Objection Handling:** A short FAQ addressing the two or three hesitations that come up most in sales conversations.
+6. **Final CTA:** Repeat the offer and the single next step, with urgency where genuinely applicable.
+
+> **Pro Tip:** Never link out to your main navigation from a paid landing page. Every outbound link is an exit ramp away from the one action you actually want the visitor to take.
+
+### Testing What Actually Moves the Needle
+Headline and offer changes typically produce far larger conversion lifts than color or button-shape tweaks. Prioritize testing in that order: offer, headline, hero image, form length, then visual polish — teams often do the reverse and wonder why their test results are flat.`
   },
   {
     slug: 'tiktok-ads-vs-meta-ads-where-should-you-spend-first',
     title: 'TikTok Ads vs. Meta Ads: Where Should You Spend First?',
     cat: 'Paid Social',
     date: 'Mar 21, 2026',
-    read: '6 min',
+    read: '8 min',
     author: 'Omar Haddad',
     excerpt: 'A budget-by-budget comparison comparing audience targeting, ROAS, and creative fatigue on both platforms.',
-    content: `Budget placement depends on target demographic and creative agility.
-- **Meta Ads:** Stronger targeting algorithms for broad demographics and mature offers.
-- **TikTok Ads:** High engagement for trend-driven, impulse purchases requiring fast creative refreshes.`
+    content: `Budget placement depends heavily on your target demographic, offer type, and how quickly you can produce fresh creative — not simply which platform is "trending" this quarter.
+
+### Platform Strengths
+- **Meta Ads:** Stronger targeting algorithms for broad demographics and mature offers with established purchase intent data. Meta's ad system benefits from over a decade of behavioral signal, making it especially strong for retargeting and lookalike audiences built from existing customer lists.
+- **TikTok Ads:** High engagement for trend-driven, impulse purchases that reward fast creative refreshes. TikTok's algorithm rewards native, unpolished content over traditional ad production — creative that looks like an ad typically underperforms creative that looks like organic content.
+
+### Creative Fatigue: The Real Deciding Factor
+1. **Meta:** A well-performing ad can often run for several weeks before meaningful fatigue sets in, particularly with a large enough audience pool.
+2. **TikTok:** Creative fatigue sets in dramatically faster — often within days for smaller audiences — because the culture of the platform rewards novelty over repetition.
+
+If your team can't sustain a high volume of fresh creative, Meta's slower fatigue cycle will stretch your budget further. If you have a lean, fast content production process, TikTok's lower CPMs for younger demographics can outperform.
+
+> **Pro Tip:** Start with a small test budget split roughly 70/30 toward whichever platform matches your audience's primary demographic, then reallocate weekly based on cost per qualified lead — not cost per click, which can be misleadingly low on platforms with high accidental-click rates.
+
+### Where Budget Should Start
+- **B2B and higher-ticket offers:** Meta and LinkedIn typically outperform, given the platforms' stronger intent and job-title targeting data.
+- **Impulse, lower-ticket, younger-demographic offers:** TikTok frequently delivers a lower cost per acquisition, provided creative can be refreshed at pace.
+
+Most brands eventually run both in parallel — but starting with the platform that matches your audience and creative capacity avoids wasting early budget on the wrong learning curve.`
   },
   {
     slug: 'b2b-linkedin-marketing-from-zero-connections-to-high-ticket-leads',
     title: 'B2B LinkedIn Marketing: From Zero Connections to High-Ticket Leads',
     cat: 'Social Media',
     date: 'Mar 11, 2026',
-    read: '9 min',
+    read: '10 min',
     author: 'Sara Malik',
     excerpt: 'How executive ghostwriting and targeted organic reach drive pipeline without sending spammy DMs.',
-    content: `Spammy InMail is dead. Build pipeline through organic executive authority and insightful engagement. Optimize your personal profile as a direct conversion page.`
+    content: `Spammy InMail is dead. LinkedIn's own data and user feedback have made clear that cold, generic pitch messages are actively suppressed in favor of accounts that build genuine organic authority first. Build pipeline through organic executive authority and insightful engagement instead.
+
+### Optimize the Profile as a Conversion Page
+Treat your personal profile the way you'd treat a landing page, not a static résumé.
+- **Headline:** Lead with the outcome you help people achieve, not just your job title.
+- **Banner:** Use the visual space to reinforce your offer or a proof point — a stat, a client logo strip, or a clear value statement.
+- **About Section:** Write it in first person, addressed directly to your ideal client's problem, ending with a clear next step.
+
+### The Content System
+1. **Post 3-4x per week**, alternating between insight posts (a specific lesson or framework) and story posts (a client result or a personal turning point).
+2. **Comment genuinely** on 10-15 posts a day from your ideal audience before you ever post yourself — this builds the relationship graph the algorithm rewards with reach.
+3. **Document, don't just teach.** Posts built around a real, specific situation you navigated consistently outperform generic advice posts that could have been written by anyone.
+
+> **Pro Tip:** The highest-converting LinkedIn content format for B2B is a short, first-person story ending in a specific, counterintuitive lesson — not a polished list of generic tips.
+
+### Turning Engagement Into Pipeline
+Organic reach builds awareness, but it rarely converts on its own. Layer in:
+- A soft, natural CTA in your comments and DMs to people who've engaged multiple times — never a cold pitch to someone who's never interacted with your content.
+- A simple, low-friction next step (a short resource, a specific question) rather than an immediate demo request.
+- Consistent tracking of which posts generate genuine profile visits and inbound messages, so you can double down on what's actually working rather than what simply gets likes.
+
+Executives who commit to this system consistently for 90 days typically see inbound conversations start arriving without any outbound prospecting at all.`
   },
   {
     slug: 'designing-for-mobile-first-ux-patterns-you-can-no-longer-ignore',
     title: 'Designing for Mobile First: UX Patterns You Can No Longer Ignore',
     cat: 'UI/UX Design',
     date: 'Feb 28, 2026',
-    read: '6 min',
+    read: '7 min',
     author: 'Daniel Reyes',
     excerpt: 'Thumb-friendly navigation, speed optimizations, and micro-interactions that elevate mobile checkout.',
-    content: `Design for natural thumb reach, large touch targets, and instant one-tap checkout options.`
+    content: `Design for natural thumb reach, large touch targets, and instant one-tap checkout options — mobile is no longer a secondary consideration adapted from desktop, it's the primary design surface for most consumer-facing products.
+
+### Thumb-Zone Navigation
+- Place primary actions (add to cart, submit, continue) within the natural thumb arc at the bottom third of the screen, not the top, which requires an awkward reach on most phone sizes.
+- Keep tap targets at least 44x44 pixels — smaller targets meaningfully increase mis-taps and abandonment, especially for users with larger hands or reduced dexterity.
+- Avoid nested hamburger menus for primary navigation on conversion-critical flows; a persistent bottom tab bar performs better for task completion.
+
+### Speed as a UX Feature, Not Just a Technical Metric
+1. Lazy-load below-the-fold images and defer non-critical scripts so the first interaction is available as quickly as possible.
+2. Use skeleton loading states instead of blank screens or spinners — perceived speed matters as much as actual load time.
+3. Compress and serve responsive image sizes matched to actual device viewport, not a single large asset scaled down by the browser.
+
+> **Pro Tip:** Test your checkout flow on a mid-range Android device on a throttled connection, not just the newest iPhone on office wifi. Most real-world mobile traffic looks far closer to the former.
+
+### Micro-Interactions That Reduce Checkout Friction
+- Inline field validation as the user types, rather than a wall of errors after submission.
+- Auto-formatting for card numbers, phone numbers, and dates to reduce manual correction.
+- Native payment integrations (Apple Pay, Google Pay) prioritized above manual card entry — they consistently reduce checkout time and abandonment on mobile.
+
+Small, well-executed micro-interactions compound: individually they feel minor, but together they're often the difference between a mobile checkout flow that converts and one that quietly loses a third of its traffic at the final step.`
   },
   {
     slug: 'how-to-write-ad-copy-that-beats-the-algorithm',
     title: 'How to Write Ad Copy That Beats the Algorithm',
     cat: 'Copywriting',
     date: 'Feb 14, 2026',
-    read: '5 min',
+    read: '7 min',
     author: 'Layla Aziz',
     excerpt: 'Psychological triggers and hook frameworks that stop the scroll and get prospects to click.',
-    content: `Effective ad copy focuses on objections and benefits. Address primary friction directly in the first two lines.`
+    content: `Effective ad copy focuses on objections and benefits, not features. Address the primary friction point directly in the first two lines, before the reader has decided whether you're worth their attention.
+
+### The Hook Frameworks That Consistently Work
+1. **The Direct Callout:** Name the exact person or situation your offer is for — "If you're a founder still doing your own bookkeeping at midnight, this is for you." Specificity outperforms broad appeal in the first line every time.
+2. **The Pattern Interrupt:** Open with a counterintuitive or mildly contrarian statement that stops the scroll — "Your ad budget isn't the problem. Your landing page is."
+3. **The Micro-Story:** Open mid-scene, dropping the reader into a specific, relatable moment before revealing the lesson or offer.
+
+### Addressing Objections Before They're Voiced
+> **Pro Tip:** List the top three objections your sales team hears most often, then write one line of ad copy that pre-empts each. Copy that quietly defuses objections converts at a meaningfully higher rate than copy that only lists benefits.
+
+### Structure for Scroll-Stopping Copy
+- **Line 1-2:** The hook — specificity or a pattern interrupt, never a generic greeting.
+- **Middle:** One clear benefit, framed as the outcome the reader wants, backed by a specific, credible proof point.
+- **Close:** A direct, low-friction CTA — tell the reader exactly what happens when they click, not just "learn more."
+
+### Testing Copy Systematically
+Test one variable at a time — hook, benefit framing, or CTA — rather than rewriting the entire ad between tests. Without isolating variables, you can't reliably learn which element actually drove the performance change, and you end up optimizing by instinct rather than data.
+
+Copy that wins consistently over time isn't cleverer than the competition — it's simply more specific about who it's for and more honest about what it's asking the reader to do next.`
   },
   {
     slug: 'building-a-first-party-data-strategy-before-cookies-disappear-completely',
     title: 'Building a First-Party Data Strategy Before Cookies Disappear Completely',
     cat: 'Analytics',
     date: 'Jan 30, 2026',
-    read: '12 min',
+    read: '13 min',
     author: 'Elena Rostova',
     excerpt: 'How to capture, organize, and leverage zero- and first-party customer data to future-proof your tracking.',
-    content: `Capture first-party data directly via interactive quizzes, gated resources, and customized post-purchase accounts.`
+    content: `Capture first-party data directly via interactive quizzes, gated resources, and customized post-purchase accounts. As third-party cookie deprecation continues to reshape the tracking landscape, brands with a mature first-party data strategy are the ones maintaining accurate attribution while competitors see their reported performance degrade.
+
+### Zero-Party vs. First-Party Data
+It's worth distinguishing the two, because they're captured and used differently:
+- **Zero-party data** is explicitly and voluntarily shared by the customer — quiz answers, stated preferences, survey responses.
+- **First-party data** is observed directly through your own owned properties — purchase history, on-site behavior, email engagement.
+
+Both are durable and consent-based, unlike third-party data purchased or inferred from cross-site tracking, which is increasingly restricted or blocked outright.
+
+### Capture Mechanisms That Actually Work
+1. **Interactive quizzes** that recommend a product or service based on answers — customers willingly exchange preference data for a personalized result.
+2. **Gated, genuinely valuable resources** (templates, calculators, detailed guides) in exchange for an email and a qualifying data point.
+3. **Post-purchase account creation**, incentivized with order tracking, faster reordering, or loyalty perks rather than forced at checkout, which tends to increase cart abandonment.
+
+> **Pro Tip:** Ask for one additional data point at each stage of the customer relationship rather than a long form upfront. A short, low-friction quiz followed by progressive profiling over time captures more accurate data than a single exhaustive intake form most people abandon halfway through.
+
+### Making the Data Useful
+Collected data that never leaves a spreadsheet isn't a strategy. Feed it into:
+- Segmented email flows based on stated preferences, not just purchase history.
+- Enhanced conversion tracking via server-side tagging, matched against hashed first-party identifiers.
+- Lookalike and retargeting audiences built from your own customer list rather than third-party behavioral signals.
+
+### Governance and Trust
+Any first-party data strategy has to be paired with transparent, easily accessible privacy practices — a clear explanation of what's collected and why, and a genuinely simple way to opt out. Trust is the actual currency behind first-party data; brands that treat it carelessly see both worse data quality and long-term brand damage that outweighs any short-term targeting gain.`
   },
   {
     slug: 'community-led-growth-turning-users-into-your-best-marketing-channel',
     title: 'Community-Led Growth: Turning Users into Your Best Marketing Channel',
     cat: 'Growth',
     date: 'Jan 18, 2026',
-    read: '8 min',
+    read: '9 min',
     author: 'Omar Haddad',
     excerpt: 'A step-by-step guide to building engaged Slack, Discord, or newsletter communities that fuel organic acquisition.',
-    content: `Turn customers into active advocates by building dedicated spaces for networking, feedback, and early feature access.`
+    content: `Turn customers into active advocates by building dedicated spaces for networking, feedback, and early feature access. Community-led growth compounds in a way paid acquisition never does — a genuinely engaged community keeps generating referrals, feedback, and content long after the initial investment to build it.
+
+### Choosing the Right Platform
+- **Slack or Discord:** Best for real-time, high-engagement communities where members genuinely want to interact with each other, not just with your brand.
+- **Newsletter or forum-style communities:** Better suited for audiences that prefer asynchronous, lower-commitment engagement — useful when your audience skews busier or more senior.
+
+Match the platform to how your specific audience already communicates rather than defaulting to whichever tool is trending.
+
+### The Seeding Phase
+1. Start with a small, hand-picked group of your most engaged existing customers rather than opening broadly on day one — a quiet, low-activity community kills momentum before it starts.
+2. Personally invite each early member and set clear, specific expectations for what the space is for.
+3. Seed the first few weeks of discussion yourself, rather than waiting for members to initiate — early activity signals that the space is alive.
+
+> **Pro Tip:** Give your community something exclusive it can't get anywhere else — early feature access, direct input on the roadmap, or first access to new content. Communities built purely around your product with nothing exclusive to offer typically stall after the initial novelty fades.
+
+### Sustaining Engagement Long-Term
+- Recognize and highlight active members publicly — visible status is one of the strongest, lowest-cost engagement drivers in any community.
+- Run regular, lightweight rituals (a weekly thread, a monthly AMA) that give members a reason to return on a predictable cadence.
+- Close the loop visibly when community feedback actually changes your product or roadmap — nothing builds trust in a community faster than members seeing their input taken seriously.
+
+### Measuring Community ROI
+Track referral traffic and sign-ups attributed to community members, support ticket deflection from peer-to-peer help, and qualitative signal from product feedback threads. A well-run community rarely shows up as a single clean line item in a dashboard, but its downstream effect on retention, referrals, and product direction is consistently among the highest-leverage investments a growing brand can make.`
   }
 ];
 export const BLOG = BLOG_RAW.map((b) => ({ ...b, slug: slugify(b.title) }));

@@ -7,6 +7,7 @@ import { AGENCY, SERVICES, SERVICE_DETAILS, PORTFOLIO, BLOG, PRICING, TESTIMONIA
 // import { Hero, Marquee, About, ServicesGrid, WhyUs, Industries, Process, PortfolioGrid, Pricing, BlogGrid, FAQ, CTA, SectionHead, Reveal, Eyebrow } from '@/components/sections';
 import { Hero, Marquee, TrustBar, About, ServicesGrid, WhyUs, Industries, Process, PortfolioGrid, Testimonials, Team, Pricing, BlogGrid, FAQ, CTA, SectionHead, Reveal, Eyebrow } from "@/sections";
 import AdvertisingPlatformsGuide from "@/components/ui/AdvertisingPlatformsGuide";
+import { FAQS } from "../data/site";
 
 
 function CtaButtons({ light }) {
@@ -359,115 +360,620 @@ export function PricingPage() {
   </>);
 }
 
+// ---- Content parsing helpers -----------------------------------------------
+
+function mdInline(text) {
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/\*\*(.+?)\*\*/g, '<strong class="font-semibold text-foreground">$1</strong>')
+    .replace(/\*(.+?)\*/g, '<em class="italic">$1</em>')
+    .replace(/`(.+?)`/g, '<code class="rounded bg-secondary px-1.5 py-0.5 text-[0.85em] font-mono text-primary">$1</code>');
+}
+
+function parseBlocks(content) {
+  const lines = content.split('\n');
+  const blocks = [];
+  let i = 0;
+  while (i < lines.length) {
+    const line = lines[i].trim();
+    if (!line) { i++; continue; }
+
+    if (line.startsWith('### ')) {
+      blocks.push({ type: 'h3', text: line.slice(4) });
+      i++;
+    } else if (line.startsWith('> ')) {
+      const parts = [];
+      while (i < lines.length && lines[i].trim().startsWith('> ')) {
+        parts.push(lines[i].trim().slice(2));
+        i++;
+      }
+      blocks.push({ type: 'quote', text: parts.join(' ') });
+    } else if (/^-\s+/.test(line)) {
+      const items = [];
+      while (i < lines.length && /^-\s+/.test(lines[i].trim())) {
+        items.push(lines[i].trim().replace(/^-\s+/, ''));
+        i++;
+      }
+      blocks.push({ type: 'ul', items });
+    } else if (/^\d+\.\s+/.test(line)) {
+      const items = [];
+      while (i < lines.length && /^\d+\.\s+/.test(lines[i].trim())) {
+        items.push(lines[i].trim().replace(/^\d+\.\s+/, ''));
+        i++;
+      }
+      blocks.push({ type: 'ol', items });
+    } else {
+      const parts = [];
+      while (i < lines.length && lines[i].trim() && !/^(###\s|>\s|-\s|\d+\.\s)/.test(lines[i].trim())) {
+        parts.push(lines[i].trim());
+        i++;
+      }
+      blocks.push({ type: 'p', text: parts.join(' ') });
+    }
+  }
+  return blocks;
+}
+
+// Topic keywords per category so cover art is visually relevant, not random.
+// Swap picsum for a real photo/CDN URL per slug whenever you have final assets —
+// this function is the single place that needs to change.
+const CATEGORY_SEED = {
+  'Google Ads': 'ppc-search-analytics',
+  'Social Media': 'social-content-creator',
+  SEO: 'search-ranking-data',
+  'Web Development': 'website-code-design',
+  Video: 'video-production-camera',
+  Branding: 'brand-identity-design',
+  'Email Marketing': 'email-inbox-campaign',
+  'Paid Social': 'social-ads-mobile',
+  'UI/UX Design': 'app-interface-design',
+  Copywriting: 'writing-desk-notebook',
+  Analytics: 'data-dashboard-charts',
+  Growth: 'team-collaboration-growth',
+};
+
+function coverImage(slug, cat, w = 1200, h = 700) {
+  const seed = CATEGORY_SEED[cat] || 'marketing-strategy';
+  return `https://picsum.photos/seed/${seed}-${slug}/${w}/${h}`;
+}
+
+function ContentRenderer({ post }) {
+  const blocks = useMemo(() => parseBlocks(post.content), [post.content]);
+  let h3Count = 0;
+
+  return (
+    <div className="space-y-6">
+      {blocks.map((b, idx) => {
+        if (b.type === 'h3') {
+          h3Count += 1;
+          const withImage = h3Count % 2 === 0;
+          return (
+            <div key={idx}>
+              <h2 className="mt-10 font-display text-xl font-bold text-foreground sm:text-2xl">
+                {b.text}
+              </h2>
+              {withImage && (
+                <figure className="mt-5 overflow-hidden rounded-2xl border border-border">
+                  <img
+                    src={coverImage(`${post.slug}-${h3Count}`, post.cat, 900, 500)}
+                    alt={`${b.text} illustration`}
+                    className="h-48 w-full object-cover sm:h-64"
+                    loading="lazy"
+                  />
+                </figure>
+              )}
+            </div>
+          );
+        }
+        if (b.type === 'quote') {
+          return (
+            <blockquote
+              key={idx}
+              className="my-6 rounded-2xl border-l-4 border-primary bg-primary/5 px-5 py-4 text-foreground"
+              dangerouslySetInnerHTML={{ __html: mdInline(b.text) }}
+            />
+          );
+        }
+        if (b.type === 'ul') {
+          return (
+            <ul key={idx} className="space-y-2.5">
+              {b.items.map((it, j) => (
+                <li key={j} className="flex gap-3 text-muted-foreground">
+                  <Check className="mt-1 h-4 w-4 shrink-0 text-accent" />
+                  <span dangerouslySetInnerHTML={{ __html: mdInline(it) }} />
+                </li>
+              ))}
+            </ul>
+          );
+        }
+        if (b.type === 'ol') {
+          return (
+            <ol key={idx} className="space-y-3">
+              {b.items.map((it, j) => (
+                <li key={j} className="flex gap-3 text-muted-foreground">
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary">
+                    {j + 1}
+                  </span>
+                  <span dangerouslySetInnerHTML={{ __html: mdInline(it) }} />
+                </li>
+              ))}
+            </ol>
+          );
+        }
+        return (
+          <p
+            key={idx}
+            className="leading-relaxed text-muted-foreground"
+            dangerouslySetInnerHTML={{ __html: mdInline(b.text) }}
+          />
+        );
+      })}
+    </div>
+  );
+}
+
+// ---- BlogPage ---------------------------------------------------------------
+
 export function BlogPage() {
   const cats = ['All', ...Array.from(new Set(BLOG.map((b) => b.cat)))];
   const [active, setActive] = useState('All');
   const [query, setQuery] = useState('');
-  const list = useMemo(() => BLOG.filter((b) => (active === 'All' || b.cat === active) && (b.title.toLowerCase().includes(query.toLowerCase()) || b.excerpt.toLowerCase().includes(query.toLowerCase()))), [active, query]);
-  return (<>
-    <Seo title="Blog & Insights" desc="Marketing tips, guides and insights from FAST MEDIA AGENCY." />
-    <PageHero eyebrow="Blog" title="Insights to grow smarter" sub="Practical marketing tips, playbooks and guides." />
-    <section className="mx-auto max-w-[90rem] px-5 py-16 lg:px-10">
-      <div className="flex flex-col items-center gap-5">
-        <div className="relative w-full max-w-md">
-          <SearchIcon className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-          <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search articles..." className="w-full rounded-full border border-input bg-background py-3 pl-11 pr-4 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20" />
+  const list = useMemo(
+    () =>
+      BLOG.filter(
+        (b) =>
+          (active === 'All' || b.cat === active) &&
+          (b.title.toLowerCase().includes(query.toLowerCase()) ||
+            b.excerpt.toLowerCase().includes(query.toLowerCase()))
+      ),
+    [active, query]
+  );
+
+  const featured = active === 'All' && !query ? list[0] : null;
+  const rest = featured ? list.slice(1) : list;
+
+  return (
+    <>
+      <Seo title="Blog & Insights" desc="Marketing tips, guides and insights from FAST MEDIA AGENCY." />
+      <PageHero eyebrow="Blog" title="Insights to grow smarter" sub="Practical marketing tips, playbooks and guides." />
+
+      <section className="mx-auto max-w-[90rem] px-5 py-16 lg:px-10">
+        <div className="flex flex-col items-center gap-5">
+          <div className="relative w-full max-w-md">
+            <SearchIcon className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+            <input
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Search articles..."
+              className="w-full rounded-full border border-input bg-background py-3 pl-11 pr-4 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+            />
+          </div>
+          <div className="flex flex-wrap justify-center gap-2">
+            {cats.map((c) => (
+              <button
+                key={c}
+                onClick={() => setActive(c)}
+                className={`rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${
+                  active === c
+                    ? 'border-primary bg-primary text-primary-foreground'
+                    : 'border-border hover:border-primary hover:text-primary'
+                }`}
+              >
+                {c}
+              </button>
+            ))}
+          </div>
         </div>
-        <div className="flex flex-wrap justify-center gap-2">
-          {cats.map((c) => (<button key={c} onClick={() => setActive(c)} className={`rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${active === c ? 'border-primary bg-primary text-primary-foreground' : 'border-border hover:border-primary hover:text-primary'}`}>{c}</button>))}
-        </div>
-      </div>
-      {list.length === 0 ? (
-        <p className="mt-16 text-center text-muted-foreground">No articles match your search.</p>
-      ) : (
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {list.map((b, i) => (
-            <Reveal key={b.slug} delay={(i % 3) * 0.06}>
-              <Link to={`/blog/${b.slug}`} className="group flex h-full flex-col rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:shadow-xl">
-                <span className="w-fit rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">{b.cat}</span>
-                <h3 className="mt-4 font-display text-lg font-bold leading-snug transition-colors group-hover:text-primary">{b.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{b.excerpt}</p>
-                <div className="mt-auto flex items-center gap-3 pt-5 text-xs text-muted-foreground"><span>{b.author}</span><span>•</span><span>{b.date}</span></div>
-              </Link>
-            </Reveal>
-          ))}
-        </div>
-      )}
-    </section>
-    <CTA />
-  </>);
+
+        {list.length === 0 ? (
+          <p className="mt-16 text-center text-muted-foreground">No articles match your search.</p>
+        ) : (
+          <>
+            {featured && (
+              <Reveal>
+                <Link
+                  to={`/blog/${featured.slug}`}
+                  className="group mt-12 grid gap-6 overflow-hidden rounded-3xl border border-border bg-card p-3 shadow-sm transition-shadow hover:shadow-xl sm:grid-cols-2 sm:p-4"
+                >
+                  <div className="overflow-hidden rounded-2xl">
+                    <img
+                      src={coverImage(featured.slug, featured.cat)}
+                      alt={featured.title}
+                      className="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-105 sm:h-full"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="flex flex-col justify-center p-3 sm:p-6">
+                    <span className="w-fit rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+                      Latest • {featured.cat}
+                    </span>
+                    <h2 className="mt-4 font-display text-2xl font-bold leading-snug transition-colors group-hover:text-primary sm:text-3xl">
+                      {featured.title}
+                    </h2>
+                    <p className="mt-3 text-muted-foreground">{featured.excerpt}</p>
+                    <div className="mt-6 flex items-center gap-3 text-sm text-muted-foreground">
+                      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-secondary text-xs font-bold text-foreground">
+                        {featured.author.split(' ').map((n) => n[0]).join('')}
+                      </span>
+                      <span>{featured.author}</span>
+                      <span>•</span>
+                      <span>{featured.date}</span>
+                      <span>•</span>
+                      <span>{featured.read} read</span>
+                    </div>
+                  </div>
+                </Link>
+              </Reveal>
+            )}
+
+            <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {rest.map((b, i) => (
+                <Reveal key={b.slug} delay={(i % 3) * 0.06}>
+                  <Link
+                    to={`/blog/${b.slug}`}
+                    className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all hover:-translate-y-1 hover:shadow-xl"
+                  >
+                    <div className="overflow-hidden">
+                      <img
+                        src={coverImage(b.slug, b.cat, 800, 450)}
+                        alt={b.title}
+                        className="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="flex flex-1 flex-col p-6">
+                      <span className="w-fit rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+                        {b.cat}
+                      </span>
+                      <h3 className="mt-4 font-display text-lg font-bold leading-snug transition-colors group-hover:text-primary">
+                        {b.title}
+                      </h3>
+                      <p className="mt-2 text-sm text-muted-foreground">{b.excerpt}</p>
+                      <div className="mt-auto flex items-center gap-3 pt-5 text-xs text-muted-foreground">
+                        <span>{b.author}</span>
+                        <span>•</span>
+                        <span>{b.date}</span>
+                        <span>•</span>
+                        <span>{b.read} read</span>
+                      </div>
+                    </div>
+                  </Link>
+                </Reveal>
+              ))}
+            </div>
+          </>
+        )}
+      </section>
+      <CTA />
+    </>
+  );
 }
+
+// ---- BlogDetailPage -----------------------------------------------------------
 
 export function BlogDetailPage() {
   const { slug } = useParams();
   const post = BLOG.find((b) => b.slug === slug);
   const [comments, setComments] = useState([]);
   const [cForm, setCForm] = useState({ name: '', text: '' });
+
   if (!post) return <NotFound label="Article" to="/blog" cta="Back to blog" />;
-  const related = BLOG.filter((b) => b.slug !== slug).slice(0, 3);
-  const addComment = (e) => { e.preventDefault(); if (!cForm.name || !cForm.text) return; setComments((c) => [...c, { ...cForm, id: Date.now() }]); setCForm({ name: '', text: '' }); };
-  return (<>
-    <Seo title={post.title} desc={post.excerpt} />
-    <PageHero eyebrow={post.cat} title={post.title} />
-    <article className="mx-auto max-w-3xl px-5 py-16">
-      <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-        <span className="flex items-center gap-1.5"><User className="h-4 w-4" />{post.author}</span>
-        <span className="flex items-center gap-1.5"><Calendar className="h-4 w-4" />{post.date}</span>
-        <span className="flex items-center gap-1.5"><Tag className="h-4 w-4" />{post.cat}</span>
-        <span>{post.read} read</span>
-      </div>
-      <div className="mt-6 h-56 rounded-3xl bg-gradient-to-br from-primary/80 to-accent/80" />
-      <div className="mt-8 space-y-5 text-muted-foreground">
-        <p className="text-lg text-foreground">{post.excerpt}</p>
-        <p>In this article we break down exactly what matters and how to apply it to your business today. The strategies below come straight from campaigns we run for our clients across {post.cat.toLowerCase()} and beyond.</p>
-        <h2 className="font-display text-xl font-bold text-foreground">Why this matters</h2>
-        <p>Most businesses leave real growth on the table simply because they follow outdated advice. We focus on the fundamentals that consistently move the needle: clear goals, tight targeting, strong creative and disciplined measurement.</p>
-        <h2 className="font-display text-xl font-bold text-foreground">Key takeaways</h2>
-        <ul className="space-y-2">
-          {['Start with a clear, measurable objective', 'Test small, then scale what works', 'Track every conversion so you know your true return', 'Review and optimise on a regular cadence'].map((t) => (
-            <li key={t} className="flex gap-2"><Check className="h-5 w-5 shrink-0 text-accent" />{t}</li>
-          ))}
-        </ul>
-        <p>Want a hand putting this into practice? Our team can build and run it for you.</p>
-      </div>
 
-      <div className="mt-10 rounded-3xl border border-border bg-secondary/40 p-8 text-center">
-        <h3 className="font-display text-2xl font-bold">Grow your business with FAST MEDIA AGENCY</h3>
-        <div className="mt-6 flex justify-center"><CtaButtons /></div>
-      </div>
+  const related = BLOG.filter((b) => b.slug !== slug && b.cat === post.cat).slice(0, 3);
+  const relatedFallback = related.length ? related : BLOG.filter((b) => b.slug !== slug).slice(0, 3);
 
-      <div className="mt-12">
-        <h3 className="font-display text-xl font-bold">Comments ({comments.length})</h3>
-        <form onSubmit={addComment} className="mt-5 space-y-3">
-          <input value={cForm.name} onChange={(e) => setCForm((f) => ({ ...f, name: e.target.value }))} placeholder="Your name" className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20" />
-          <textarea value={cForm.text} onChange={(e) => setCForm((f) => ({ ...f, text: e.target.value }))} rows={3} placeholder="Add a comment..." className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20" />
-          <button type="submit" className="rounded-full bg-primary px-5 py-2.5 font-semibold text-primary-foreground">Post comment</button>
-        </form>
-        <div className="mt-6 space-y-4">
-          {comments.map((c) => (
-            <div key={c.id} className="rounded-2xl border border-border bg-card p-4"><div className="font-semibold">{c.name}</div><p className="mt-1 text-sm text-muted-foreground">{c.text}</p></div>
+  const addComment = (e) => {
+    e.preventDefault();
+    if (!cForm.name || !cForm.text) return;
+    setComments((c) => [...c, { ...cForm, id: Date.now() }]);
+    setCForm({ name: '', text: '' });
+  };
+
+  return (
+    <>
+      <Seo title={post.title} desc={post.excerpt} />
+      <PageHero eyebrow={post.cat} title={post.title} sub={post.excerpt} />
+
+      <article className="mx-auto max-w-3xl px-5 py-16">
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-muted-foreground">
+          <span className="flex items-center gap-1.5">
+            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-secondary text-[10px] font-bold text-foreground">
+              {post.author.split(' ').map((n) => n[0]).join('')}
+            </span>
+            {post.author}
+          </span>
+          <span className="flex items-center gap-1.5"><Calendar className="h-4 w-4" />{post.date}</span>
+          <span className="flex items-center gap-1.5"><Tag className="h-4 w-4" />{post.cat}</span>
+          <span>{post.read} read</span>
+        </div>
+
+        <figure className="mt-6 overflow-hidden rounded-3xl">
+          <img
+            src={coverImage(post.slug, post.cat)}
+            alt={post.title}
+            className="h-56 w-full object-cover sm:h-80"
+            loading="eager"
+          />
+        </figure>
+
+        <div className="mt-10">
+          <p className="text-lg leading-relaxed text-foreground">{post.excerpt}</p>
+          <div className="mt-8">
+            <ContentRenderer post={post} />
+          </div>
+        </div>
+
+        <div className="mt-12 rounded-3xl border border-border bg-secondary/40 p-8 text-center">
+          <h3 className="font-display text-2xl font-bold">Grow your business with FAST MEDIA AGENCY</h3>
+          <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground">
+            Want a hand putting this into practice? Our team can build and run it for you.
+          </p>
+          <div className="mt-6 flex justify-center"><CtaButtons /></div>
+        </div>
+
+        <div className="mt-14">
+          <h3 className="font-display text-xl font-bold">Comments ({comments.length})</h3>
+          <form onSubmit={addComment} className="mt-5 space-y-3">
+            <input
+              value={cForm.name}
+              onChange={(e) => setCForm((f) => ({ ...f, name: e.target.value }))}
+              placeholder="Your name"
+              className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+            />
+            <textarea
+              value={cForm.text}
+              onChange={(e) => setCForm((f) => ({ ...f, text: e.target.value }))}
+              rows={3}
+              placeholder="Add a comment..."
+              className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+            />
+            <button type="submit" className="rounded-full bg-primary px-5 py-2.5 font-semibold text-primary-foreground">
+              Post comment
+            </button>
+          </form>
+          <div className="mt-6 space-y-4">
+            {comments.map((c) => (
+              <div key={c.id} className="rounded-2xl border border-border bg-card p-4">
+                <div className="flex items-center gap-2 font-semibold">
+                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary/10 text-[10px] font-bold text-primary">
+                    {c.name.slice(0, 1).toUpperCase()}
+                  </span>
+                  {c.name}
+                </div>
+                <p className="mt-1 text-sm text-muted-foreground">{c.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <h3 className="mt-14 font-display text-xl font-bold">Related posts</h3>
+        <div className="mt-5 grid gap-5 sm:grid-cols-3">
+          {relatedFallback.map((b) => (
+            <Link
+              key={b.slug}
+              to={`/blog/${b.slug}`}
+              className="group overflow-hidden rounded-2xl border border-border bg-card transition-all hover:-translate-y-1 hover:shadow-lg"
+            >
+              <img src={coverImage(b.slug, b.cat, 500, 300)} alt={b.title} className="h-32 w-full object-cover" loading="lazy" />
+              <div className="p-5">
+                <span className="text-xs font-semibold text-primary">{b.cat}</span>
+                <h4 className="mt-1 font-display font-bold leading-snug transition-colors group-hover:text-primary">
+                  {b.title}
+                </h4>
+              </div>
+            </Link>
           ))}
         </div>
-      </div>
 
-      <h3 className="mt-14 font-display text-xl font-bold">Related posts</h3>
-      <div className="mt-5 grid gap-5 sm:grid-cols-3">
-        {related.map((b) => (
-          <Link key={b.slug} to={`/blog/${b.slug}`} className="group rounded-2xl border border-border bg-card p-5 transition-all hover:-translate-y-1 hover:shadow-lg"><span className="text-xs font-semibold text-primary">{b.cat}</span><h4 className="mt-1 font-display font-bold leading-snug transition-colors group-hover:text-primary">{b.title}</h4></Link>
-        ))}
-      </div>
-      <Link to="/blog" className="mt-10 inline-flex items-center gap-2 font-semibold text-primary"><ArrowLeft className="h-4 w-4" /> Back to blog</Link>
-    </article>
-  </>);
+        <Link to="/blog" className="mt-10 inline-flex items-center gap-2 font-semibold text-primary">
+          <ArrowLeft className="h-4 w-4" /> Back to blog
+        </Link>
+      </article>
+    </>
+  );
 }
 
 export function FaqPage() {
-  return (<>
-    <Seo title="FAQ" desc="Frequently asked questions about working with FAST MEDIA AGENCY." />
-    <PageHero eyebrow="FAQ" title="Questions, answered" sub="Everything you need to know before we start." />
-    <FAQ full hideHead />
-    <CTA />
-  </>);
+  const cats = ['All', ...Array.from(new Set(FAQS.map((f) => f.cat)))];
+  const [active, setActive] = useState('All');
+  const [query, setQuery] = useState('');
+  const [openId, setOpenId] = useState(0);
+
+  const list = useMemo(
+    () =>
+      FAQS.map((f, i) => ({ ...f, id: i })).filter(
+        (f) =>
+          (active === 'All' || f.cat === active) &&
+          (f.q.toLowerCase().includes(query.toLowerCase()) ||
+            f.a.toLowerCase().includes(query.toLowerCase()))
+      ),
+    [active, query]
+  );
+
+  const toggle = (id) => setOpenId((cur) => (cur === id ? null : id));
+
+  return (
+    <>
+      <Seo title="FAQ" desc="Frequently asked questions about working with FAST MEDIA AGENCY." />
+
+      <style>{`
+        @keyframes faqFadeUp {
+          from { opacity: 0; transform: translateY(14px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes faqPulseRing {
+          0% { box-shadow: 0 0 0 0 hsl(var(--primary) / 0.35); }
+          70% { box-shadow: 0 0 0 10px hsl(var(--primary) / 0); }
+          100% { box-shadow: 0 0 0 0 hsl(var(--primary) / 0); }
+        }
+        .faq-item { animation: faqFadeUp 0.5s cubic-bezier(0.16,1,0.3,1) both; }
+        .faq-badge-active { animation: faqPulseRing 1.8s ease-out; }
+      `}</style>
+
+      <PageHero eyebrow="FAQ" title="Questions, answered" sub="Everything you need to know before we start." />
+
+      <section className="mx-auto max-w-4xl px-5 py-16 sm:py-20">
+        {/* Search + filters */}
+        <div className="flex flex-col items-center gap-6">
+          <div className="group relative w-full max-w-md">
+            <svg
+              className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground transition-colors group-focus-within:text-primary"
+              fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
+            </svg>
+            <input
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Search questions..."
+              className="w-full rounded-full border border-input bg-background py-3.5 pl-11 pr-4 text-sm shadow-sm outline-none transition-all focus:border-primary focus:shadow-md focus:ring-4 focus:ring-primary/10"
+            />
+            {query && (
+              <button
+                onClick={() => setQuery('')}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground transition-colors hover:text-foreground"
+                aria-label="Clear search"
+              >
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            )}
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-2">
+            {cats.map((c) => (
+              <button
+                key={c}
+                onClick={() => setActive(c)}
+                className={`relative rounded-full border px-4 py-2 text-sm font-semibold transition-all duration-200 ${
+                  active === c
+                    ? 'scale-105 border-primary bg-primary text-primary-foreground shadow-md shadow-primary/20'
+                    : 'border-border bg-background hover:-translate-y-0.5 hover:border-primary/50 hover:text-primary hover:shadow-sm'
+                }`}
+              >
+                {c}
+              </button>
+            ))}
+          </div>
+
+          <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+            {list.length} {list.length === 1 ? 'question' : 'questions'}
+            {active !== 'All' ? ` in ${active}` : ''}
+          </p>
+        </div>
+
+        {/* Accordion list */}
+        {list.length === 0 ? (
+          <div className="mt-16 flex flex-col items-center gap-3 text-center">
+            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-secondary">
+              <svg className="h-6 w-6 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
+              </svg>
+            </div>
+            <p className="text-muted-foreground">No questions match your search.</p>
+            <button
+              onClick={() => { setQuery(''); setActive('All'); }}
+              className="text-sm font-semibold text-primary hover:underline"
+            >
+              Clear filters
+            </button>
+          </div>
+        ) : (
+          <div className="mt-10 space-y-3">
+            {list.map((f, i) => {
+              const isOpen = openId === f.id;
+              return (
+                <div
+                  key={f.id}
+                  style={{ animationDelay: `${Math.min(i, 8) * 60}ms` }}
+                  className={`faq-item group relative overflow-hidden rounded-2xl border bg-card transition-all duration-300 ${
+                    isOpen
+                      ? 'border-primary/50 shadow-lg shadow-primary/[0.06]'
+                      : 'border-border hover:border-primary/30 hover:shadow-sm'
+                  }`}
+                >
+                  {/* Active left accent bar */}
+                  <span
+                    className={`absolute left-0 top-0 h-full w-[3px] bg-primary transition-all duration-300 ${
+                      isOpen ? 'opacity-100' : 'opacity-0'
+                    }`}
+                  />
+
+                  <button
+                    onClick={() => toggle(f.id)}
+                    className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
+                    aria-expanded={isOpen}
+                  >
+                    <div className="min-w-0">
+                      <span
+                        className={`mb-1.5 inline-flex w-fit items-center rounded-full px-2.5 py-0.5 text-[11px] font-semibold tracking-wide transition-colors ${
+                          isOpen ? 'bg-primary text-primary-foreground' : 'bg-primary/10 text-primary'
+                        }`}
+                      >
+                        {f.cat}
+                      </span>
+                      <span
+                        className={`block font-display text-base font-bold leading-snug transition-colors sm:text-lg ${
+                          isOpen ? 'text-primary' : 'text-foreground group-hover:text-primary'
+                        }`}
+                      >
+                        {f.q}
+                      </span>
+                    </div>
+                    <span
+                      className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-all duration-300 ${
+                        isOpen ? 'rotate-180 bg-primary text-primary-foreground' : 'bg-secondary text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary'
+                      }`}
+                    >
+                      <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </span>
+                  </button>
+
+                  <div
+                    style={{ maxHeight: isOpen ? '600px' : '0px' }}
+                    className="overflow-hidden transition-all duration-400 ease-in-out"
+                  >
+                    <div className="px-6 pb-6 pl-[1.9rem]">
+                      <p className="border-l-2 border-primary/20 pl-4 leading-relaxed text-muted-foreground">
+                        {f.a}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+
+        {/* Still have questions */}
+        {/* <div className="relative mt-16 overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-secondary/60 via-secondary/30 to-transparent p-10 text-center sm:p-14">
+          <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-primary/10 blur-3xl" />
+          <div className="pointer-events-none absolute -bottom-16 -left-16 h-48 w-48 rounded-full bg-accent/10 blur-3xl" /> */}
+
+          {/* <div className="relative flex flex-col items-center gap-4">
+            <div className="faq-badge-active flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
+              <svg className="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+            </div>
+            <h3 className="font-display text-2xl font-bold sm:text-3xl">Still have questions?</h3>
+            <p className="max-w-md text-muted-foreground">
+              Can't find what you're looking for? Our team is happy to walk you through anything
+              specific to your business, budget, or industry.
+            </p>
+            <div className="mt-2 flex justify-center"><CtaButtons /></div>
+          </div> */}
+        {/* </div> */}
+      </section>
+
+      <CTA />
+    </>
+  );
 }
 
 export function ContactPage() {
