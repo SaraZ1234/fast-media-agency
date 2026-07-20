@@ -5,7 +5,7 @@ import { Phone, Mail, MapPin, Clock, MessageCircle, Send, CheckCircle2, Check, A
 import * as Icons from 'lucide-react';
 import { AGENCY, SERVICES, SERVICE_DETAILS, PORTFOLIO, BLOG, PRICING, TESTIMONIALS } from '@/data/site';
 // import { Hero, Marquee, About, ServicesGrid, WhyUs, Industries, Process, PortfolioGrid, Pricing, BlogGrid, FAQ, CTA, SectionHead, Reveal, Eyebrow } from '@/components/sections';
-import { Hero, Marquee, TrustBar, About, ServicesGrid, WhyUs, Industries, Process, PortfolioGrid, Testimonials, Team, Pricing, BlogGrid, FAQ, CTA, SectionHead, Reveal, Eyebrow } from "@/sections";
+import { Hero, Marquee, TrustBar, About, ServicesGrid, WhyUs, Industries, Process, PortfolioGrid, Testimonials, Team, Pricing, BlogGrid, FAQ, CTA, SectionHead, Reveal, Eyebrow, FastHighLevel, FastHighLevelPricing } from "@/sections";
 import AdvertisingPlatformsGuide from "@/components/ui/AdvertisingPlatformsGuide";
 import { FAQS } from "../data/site";
 
@@ -53,7 +53,8 @@ export function HomePage() {
       <Hero />
       <Marquee />
       <TrustBar />
-      
+      <FastHighLevel />
+
       {/* <About />
       <ServicesGrid />
       <WhyUs />
@@ -63,6 +64,7 @@ export function HomePage() {
       <Testimonials />
       <Pricing /> */}
       <ServicesGrid />
+      <FastHighLevelPricing />
       <AdvertisingPlatformsGuide />
       {/* <CTA /> */}
     </>
@@ -309,8 +311,9 @@ export function ServiceDetailPage() {
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {related.map((s) => { // eslint-disable-next-line import/namespace
             const RI = Icons[s.icon] || Sparkles; return (
-            <Link key={s.slug} to={`/services/${s.slug}`} className="group rounded-2xl border border-border bg-card p-5 transition-all hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg"><span className="grid h-10 w-10 place-items-center rounded-xl bg-primary/10 text-primary"><RI className="h-5 w-5" strokeWidth={1.8} /></span><h4 className="mt-3 font-display font-bold transition-colors group-hover:text-primary">{s.title}</h4></Link>
-          ); })}
+              <Link key={s.slug} to={`/services/${s.slug}`} className="group rounded-2xl border border-border bg-card p-5 transition-all hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg"><span className="grid h-10 w-10 place-items-center rounded-xl bg-primary/10 text-primary"><RI className="h-5 w-5" strokeWidth={1.8} /></span><h4 className="mt-3 font-display font-bold transition-colors group-hover:text-primary">{s.title}</h4></Link>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -555,11 +558,10 @@ export function BlogPage() {
               <button
                 key={c}
                 onClick={() => setActive(c)}
-                className={`rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${
-                  active === c
-                    ? 'border-primary bg-primary text-primary-foreground'
-                    : 'border-border hover:border-primary hover:text-primary'
-                }`}
+                className={`rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${active === c
+                  ? 'border-primary bg-primary text-primary-foreground'
+                  : 'border-border hover:border-primary hover:text-primary'
+                  }`}
               >
                 {c}
               </button>
@@ -848,11 +850,10 @@ export function FaqPage() {
               <button
                 key={c}
                 onClick={() => setActive(c)}
-                className={`relative rounded-full border px-4 py-2 text-sm font-semibold transition-all duration-200 ${
-                  active === c
-                    ? 'scale-105 border-primary bg-primary text-primary-foreground shadow-md shadow-primary/20'
-                    : 'border-border bg-background hover:-translate-y-0.5 hover:border-primary/50 hover:text-primary hover:shadow-sm'
-                }`}
+                className={`relative rounded-full border px-4 py-2 text-sm font-semibold transition-all duration-200 ${active === c
+                  ? 'scale-105 border-primary bg-primary text-primary-foreground shadow-md shadow-primary/20'
+                  : 'border-border bg-background hover:-translate-y-0.5 hover:border-primary/50 hover:text-primary hover:shadow-sm'
+                  }`}
               >
                 {c}
               </button>
@@ -889,17 +890,15 @@ export function FaqPage() {
                 <div
                   key={f.id}
                   style={{ animationDelay: `${Math.min(i, 8) * 60}ms` }}
-                  className={`faq-item group relative overflow-hidden rounded-2xl border bg-card transition-all duration-300 ${
-                    isOpen
-                      ? 'border-primary/50 shadow-lg shadow-primary/[0.06]'
-                      : 'border-border hover:border-primary/30 hover:shadow-sm'
-                  }`}
+                  className={`faq-item group relative overflow-hidden rounded-2xl border bg-card transition-all duration-300 ${isOpen
+                    ? 'border-primary/50 shadow-lg shadow-primary/[0.06]'
+                    : 'border-border hover:border-primary/30 hover:shadow-sm'
+                    }`}
                 >
                   {/* Active left accent bar */}
                   <span
-                    className={`absolute left-0 top-0 h-full w-[3px] bg-primary transition-all duration-300 ${
-                      isOpen ? 'opacity-100' : 'opacity-0'
-                    }`}
+                    className={`absolute left-0 top-0 h-full w-[3px] bg-primary transition-all duration-300 ${isOpen ? 'opacity-100' : 'opacity-0'
+                      }`}
                   />
 
                   <button
@@ -909,24 +908,21 @@ export function FaqPage() {
                   >
                     <div className="min-w-0">
                       <span
-                        className={`mb-1.5 inline-flex w-fit items-center rounded-full px-2.5 py-0.5 text-[11px] font-semibold tracking-wide transition-colors ${
-                          isOpen ? 'bg-primary text-primary-foreground' : 'bg-primary/10 text-primary'
-                        }`}
+                        className={`mb-1.5 inline-flex w-fit items-center rounded-full px-2.5 py-0.5 text-[11px] font-semibold tracking-wide transition-colors ${isOpen ? 'bg-primary text-primary-foreground' : 'bg-primary/10 text-primary'
+                          }`}
                       >
                         {f.cat}
                       </span>
                       <span
-                        className={`block font-display text-base font-bold leading-snug transition-colors sm:text-lg ${
-                          isOpen ? 'text-primary' : 'text-foreground group-hover:text-primary'
-                        }`}
+                        className={`block font-display text-base font-bold leading-snug transition-colors sm:text-lg ${isOpen ? 'text-primary' : 'text-foreground group-hover:text-primary'
+                          }`}
                       >
                         {f.q}
                       </span>
                     </div>
                     <span
-                      className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-all duration-300 ${
-                        isOpen ? 'rotate-180 bg-primary text-primary-foreground' : 'bg-secondary text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary'
-                      }`}
+                      className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-all duration-300 ${isOpen ? 'rotate-180 bg-primary text-primary-foreground' : 'bg-secondary text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary'
+                        }`}
                     >
                       <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
@@ -955,7 +951,7 @@ export function FaqPage() {
           <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-primary/10 blur-3xl" />
           <div className="pointer-events-none absolute -bottom-16 -left-16 h-48 w-48 rounded-full bg-accent/10 blur-3xl" /> */}
 
-          {/* <div className="relative flex flex-col items-center gap-4">
+        {/* <div className="relative flex flex-col items-center gap-4">
             <div className="faq-badge-active flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
               <svg className="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />

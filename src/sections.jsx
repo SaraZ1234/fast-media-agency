@@ -4,6 +4,20 @@ import * as Icons from 'lucide-react';
 import { AGENCY, HERO_IMG, ABOUT_IMG, SERVICES, WHY_US, INDUSTRIES, PROCESS, STATS, PRICING, PORTFOLIO, FAQS, BLOG, CLIENTS, TESTIMONIALS, TEAM } from '@/data/site';
 import { motion, AnimatePresence } from 'framer-motion';
 
+import {
+  Users, Mic, Filter, Layout, Globe, Workflow, Mail, MessageCircle,
+  ClipboardList, CalendarCheck, PhoneCall, Share2, BarChart3, Star,
+  Smartphone, Layers, Sparkles, Target, Heart, TrendingUp,
+} from 'lucide-react';
+
+import {
+  Check,HeadphonesIcon,
+  Star as StarIcon, Clock,
+  Zap, ShoppingBag, CreditCard, Send, Calendar,
+} from 'lucide-react';
+
+
+
 export function Reveal({ children, delay = 0, className = '' }) {
   return (
     <motion.div
@@ -85,6 +99,405 @@ export function Hero() {
     </section>
   );
 }
+
+export function FastHighLevel() {
+  const FEATURES = [
+    { icon: Users, title: 'CRM', desc: 'Manage every contact and pipeline in one place.' },
+    { icon: Mic, title: 'AI Voice', desc: 'Automated voice agents that call, qualify & follow up.' },
+    { icon: Filter, title: 'Sales Funnels', desc: 'Build high-converting funnels in minutes.' },
+    { icon: Layout, title: 'Landing Pages', desc: 'Drag-and-drop pages that convert visitors.' },
+    { icon: Globe, title: 'Website Builder', desc: 'Launch fast, responsive websites with ease.' },
+    { icon: Workflow, title: 'Marketing Automation', desc: 'Trigger the right message at the right time.' },
+    { icon: Mail, title: 'Email & SMS Marketing', desc: 'Reach customers across every channel.' },
+    { icon: MessageCircle, title: 'WhatsApp Integration', desc: 'Chat with leads where they already are.' },
+    { icon: ClipboardList, title: 'Forms & Surveys', desc: 'Capture leads and feedback effortlessly.' },
+    { icon: CalendarCheck, title: 'Appointment Booking', desc: 'Let clients book themselves, automatically.' },
+    { icon: PhoneCall, title: 'Call Tracking', desc: 'Know exactly which campaigns drive calls.' },
+    { icon: Share2, title: 'Social Media Planner', desc: 'Schedule and publish across platforms.' },
+    { icon: BarChart3, title: 'Analytics Dashboard', desc: 'Real-time insights on every metric.' },
+    { icon: Star, title: 'Review Management', desc: 'Generate and manage reviews on autopilot.' },
+    { icon: Smartphone, title: 'Mobile App', desc: 'Run your entire business from your phone.' },
+  ];
+
+  const WHY_US = [
+    { icon: Layers, title: 'All-in-One Platform', desc: 'Every tool your business needs, unified.' },
+    { icon: Sparkles, title: 'AI-Powered Automation', desc: 'Work smarter with built-in AI at every step.' },
+    { icon: Target, title: 'Lead Management', desc: 'Never let a lead slip through the cracks.' },
+    { icon: Heart, title: 'Customer Engagement', desc: 'Build lasting relationships, effortlessly.' },
+    { icon: TrendingUp, title: 'Business Growth', desc: 'Scale faster with data-driven insights.' },
+  ];
+
+  return (
+    <section className="relative overflow-hidden py-20 lg:py-28">
+      {/* Ambient gradient orbs — consistent with Hero */}
+      <div className="pointer-events-none absolute -top-40 right-1/4 h-[36rem] w-[36rem] rounded-full bg-accent/20 blur-[120px]" />
+      <div className="pointer-events-none absolute -bottom-40 left-0 h-[30rem] w-[30rem] rounded-full bg-primary/20 blur-[120px]" />
+
+      <div className="relative mx-auto max-w-[90rem] px-5 lg:px-10">
+        {/* Heading */}
+        <div className="mx-auto max-w-3xl text-center">
+          <Reveal><Eyebrow>All-In-One Growth Platform</Eyebrow></Reveal>
+          <Reveal delay={0.05}>
+            <h2 className="mt-6 font-display text-3xl font-extrabold leading-[1.1] tracking-tight sm:text-4xl lg:text-5xl">
+              Fast High Level —{' '}
+              <span className="relative whitespace-nowrap text-primary">
+                The AI-Powered
+                <svg className="absolute -bottom-2 left-0 w-full" height="12" viewBox="0 0 200 12" fill="none" preserveAspectRatio="none">
+                  <path d="M2 9c40-6 120-6 196-4" stroke="hsl(var(--accent))" strokeWidth="4" strokeLinecap="round" />
+                </svg>
+              </span>{' '}
+              Business Operating System
+            </h2>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
+              Replace a stack of disconnected tools with one intelligent platform — Fast High Level brings your CRM, marketing, sales, and communication into a single AI-powered command center.
+            </p>
+          </Reveal>
+          <Reveal delay={0.15}>
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
+              <Link
+                to="/contact"
+                className="rounded-full bg-primary px-6 py-3.5 font-semibold text-primary-foreground shadow-lg shadow-primary/30 transition-transform hover:-translate-y-0.5 active:scale-[0.98]"
+              >
+                Start Free Trial
+              </Link>
+              <Link
+                to="/contact"
+                className="rounded-full border border-border px-6 py-3.5 font-semibold transition-colors hover:bg-secondary"
+              >
+                Learn More
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+
+        {/* Feature grid */}
+        <div className="mt-16 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+          {FEATURES.map((f, i) => {
+            const Icon = f.icon;
+            return (
+              <Reveal key={f.title} delay={0.03 * (i % 10)}>
+                <div className="group relative h-full overflow-hidden rounded-2xl border border-border bg-secondary/40 p-6 shadow-sm backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:bg-secondary/60 hover:shadow-xl hover:shadow-primary/10">
+                  <div className="pointer-events-none absolute -right-6 -top-6 h-24 w-24 rounded-full bg-primary/10 blur-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  <div className="relative flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors duration-300 group-hover:bg-primary group-hover:text-primary-foreground">
+                    <Icon className="h-5 w-5" strokeWidth={2} />
+                  </div>
+                  <h3 className="relative mt-4 font-display text-base font-bold">{f.title}</h3>
+                  <p className="relative mt-1.5 text-sm leading-snug text-muted-foreground">{f.desc}</p>
+                </div>
+              </Reveal>
+            );
+          })}
+        </div>
+
+        {/* Why Fast High Level */}
+        <Reveal delay={0.1}>
+          <div className="mt-20 rounded-[2rem] border border-border bg-gradient-to-br from-primary/10 to-accent/10 p-8 shadow-lg backdrop-blur lg:p-12">
+            <h3 className="text-center font-display text-2xl font-extrabold tracking-tight sm:text-3xl">
+              Why Fast High Level?
+            </h3>
+            <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-5">
+              {WHY_US.map((w) => {
+                const Icon = w.icon;
+                return (
+                  <div key={w.title} className="flex flex-col items-center text-center">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg shadow-primary/30">
+                      <Icon className="h-6 w-6" strokeWidth={2} />
+                    </div>
+                    <h4 className="mt-4 font-display text-base font-bold">{w.title}</h4>
+                    <p className="mt-1 text-sm text-muted-foreground">{w.desc}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+
+export function FastHighLevelPricing() {
+  const PLANS = [
+    {
+      name: 'Starter',
+      price: '$97',
+      period: '/month',
+      tagline: 'Perfect for solo entrepreneurs and small teams getting started.',
+      popular: false,
+      features: [
+        'CRM & Pipeline Management',
+        'Unlimited Contacts',
+        'Sales Funnels & Landing Pages',
+        'Email & SMS Marketing',
+        'Appointment Booking',
+        'Basic Automation Workflows',
+        'Mobile App Access',
+      ],
+      cta: 'Start Free Trial',
+    },
+    {
+      name: 'Unlimited',
+      price: '$297',
+      period: '/month',
+      tagline: 'For growing businesses that need full automation & AI power.',
+      popular: true,
+      features: [
+        'Everything in Starter',
+        'AI Voice & AI Automation',
+        'WhatsApp Integration',
+        'Advanced Marketing Automation',
+        'Call Tracking & Analytics Dashboard',
+        'Review Management',
+        'Social Media Planner',
+        'Priority 24/7 Support',
+      ],
+      cta: 'Start Free Trial',
+    },
+  ];
+
+  const INCLUDED = [
+    { icon: Smartphone, title: 'Mobile App' },
+    { icon: HeadphonesIcon, title: 'Award-Winning Support' },
+    { icon: Sparkles, title: 'AI Automation' },
+    { icon: Users, title: 'CRM' },
+    { icon: Filter, title: 'Funnels' },
+    { icon: Globe, title: 'Websites' },
+    { icon: Mail, title: 'Email & SMS Marketing' },
+    { icon: MessageCircle, title: 'WhatsApp Integration' },
+    { icon: StarIcon, title: 'Review Management' },
+    { icon: BarChart3, title: 'Analytics Dashboard' },
+    { icon: Clock, title: '24/7 Support' },
+  ];
+
+  const TESTIMONIALS = [
+    {
+      name: 'Sarah Mitchell',
+      role: 'Founder, Bloom Studio',
+      avatar: 'SM',
+      rating: 5,
+      review: 'Fast High Level replaced five different tools we were paying for. Our lead follow-up is now fully automated and our close rate jumped noticeably.',
+    },
+    {
+      name: 'David Chen',
+      role: 'CEO, Chen Consulting',
+      avatar: 'DC',
+      rating: 5,
+      review: 'The AI Voice feature alone paid for the subscription in the first month. Our team finally has time to focus on closing instead of chasing leads.',
+    },
+    {
+      name: 'Priya Patel',
+      role: 'Marketing Director, Nova Retail',
+      avatar: 'PP',
+      rating: 5,
+      review: 'Switching to Fast High Level gave us one dashboard for everything — funnels, email, SMS, and reviews. Onboarding was smooth and support has been outstanding.',
+    },
+    {
+      name: 'Marcus Johnson',
+      role: 'Owner, Johnson Home Services',
+      avatar: 'MJ',
+      rating: 4,
+      review: 'Appointment booking and call tracking transformed how we manage our field team. Highly recommend for any local service business.',
+    },
+  ];
+
+  const INTEGRATIONS = [
+    { icon: Zap, name: 'Zapier' },
+    { icon: ShoppingBag, name: 'Shopify' },
+    { icon: CreditCard, name: 'Stripe' },
+    { icon: Send, name: 'Mailchimp' },
+    { icon: Calendar, name: 'Google Calendar' },
+    { icon: Share2, name: 'Meta Ads' },
+  ];
+
+  return (
+    <section className="relative overflow-hidden py-20 lg:py-28">
+      {/* Ambient gradient orbs — consistent with Hero / FastHighLevel */}
+      <div className="pointer-events-none absolute -top-40 left-1/3 h-[36rem] w-[36rem] rounded-full bg-primary/20 blur-[120px]" />
+      <div className="pointer-events-none absolute -bottom-40 right-0 h-[30rem] w-[30rem] rounded-full bg-accent/20 blur-[120px]" />
+
+      <div className="relative mx-auto max-w-[90rem] px-5 lg:px-10">
+        {/* Heading */}
+        <div className="mx-auto max-w-3xl text-center">
+          <Reveal><Eyebrow>Fast High Level Pricing & Benefits</Eyebrow></Reveal>
+          <Reveal delay={0.05}>
+            <h2 className="mt-6 font-display text-3xl font-extrabold leading-[1.1] tracking-tight sm:text-4xl lg:text-5xl">
+              Simple Pricing,{' '}
+              <span className="relative whitespace-nowrap text-primary">
+                Powerful Results
+                <svg className="absolute -bottom-2 left-0 w-full" height="12" viewBox="0 0 200 12" fill="none" preserveAspectRatio="none">
+                  <path d="M2 9c40-6 120-6 196-4" stroke="hsl(var(--accent))" strokeWidth="4" strokeLinecap="round" />
+                </svg>
+              </span>
+            </h2>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
+              Choose the plan that fits your business today, and scale up anytime with Fast High Level's all-in-one platform.
+            </p>
+          </Reveal>
+        </div>
+
+        {/* Pricing cards */}
+        <div className="mx-auto mt-14 grid max-w-4xl grid-cols-1 gap-6 sm:grid-cols-2">
+          {PLANS.map((plan, i) => (
+            <Reveal key={plan.name} delay={0.05 * i}>
+              <div
+                className={`relative flex h-full flex-col rounded-2xl border p-8 shadow-sm backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${
+                  plan.popular
+                    ? 'border-primary/40 bg-gradient-to-br from-primary/10 to-accent/10 shadow-lg shadow-primary/20 hover:shadow-primary/30'
+                    : 'border-border bg-secondary/40 hover:border-primary/40 hover:shadow-primary/10'
+                }`}
+              >
+                {plan.popular && (
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-4 py-1 text-xs font-semibold text-primary-foreground shadow-lg shadow-primary/30">
+                    Most Popular
+                  </span>
+                )}
+
+                <h3 className="font-display text-xl font-bold">{plan.name}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{plan.tagline}</p>
+
+                <div className="mt-6 flex items-baseline gap-1">
+                  <span className="font-display text-4xl font-extrabold tracking-tight">{plan.price}</span>
+                  <span className="text-sm text-muted-foreground">{plan.period}</span>
+                </div>
+
+                <ul className="mt-6 flex flex-1 flex-col gap-3">
+                  {plan.features.map((f) => (
+                    <li key={f} className="flex items-start gap-2 text-sm">
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" strokeWidth={2.5} />
+                      <span className="text-muted-foreground">{f}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <Link
+                  to="/contact"
+                  className={`mt-8 w-full rounded-full px-6 py-3.5 text-center font-semibold shadow-lg transition-transform hover:-translate-y-0.5 active:scale-[0.98] ${
+                    plan.popular
+                      ? 'bg-primary text-primary-foreground shadow-primary/30'
+                      : 'bg-accent text-accent-foreground shadow-accent/25'
+                  }`}
+                >
+                  {plan.cta}
+                </Link>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
+        {/* Everything Included */}
+        <Reveal delay={0.1}>
+          <div className="mx-auto mt-20 max-w-5xl text-center">
+            <h3 className="font-display text-2xl font-extrabold tracking-tight sm:text-3xl">
+              Everything Included with Fast High Level
+            </h3>
+          </div>
+        </Reveal>
+        <div className="mx-auto mt-10 grid max-w-5xl grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+          {INCLUDED.map((item, i) => {
+            const Icon = item.icon;
+            return (
+              <Reveal key={item.title} delay={0.03 * (i % 8)}>
+                <div className="group flex flex-col items-center gap-3 rounded-2xl border border-border bg-secondary/40 p-5 text-center shadow-sm backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:bg-secondary/60 hover:shadow-lg hover:shadow-primary/10">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors duration-300 group-hover:bg-primary group-hover:text-primary-foreground">
+                    <Icon className="h-5 w-5" strokeWidth={2} />
+                  </div>
+                  <span className="text-sm font-semibold">{item.title}</span>
+                </div>
+              </Reveal>
+            );
+          })}
+        </div>
+
+        {/* Customer Success Stories */}
+        <Reveal delay={0.1}>
+          <div className="mx-auto mt-24 max-w-3xl text-center">
+            <Eyebrow>Customer Success Stories</Eyebrow>
+            <h3 className="mt-6 font-display text-2xl font-extrabold tracking-tight sm:text-3xl">
+              Trusted by Growing Businesses
+            </h3>
+          </div>
+        </Reveal>
+        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {TESTIMONIALS.map((t, i) => (
+            <Reveal key={t.name} delay={0.05 * i}>
+              <div className="flex h-full flex-col rounded-2xl border border-border bg-secondary/40 p-6 shadow-sm backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10">
+                <div className="flex gap-1">
+                  {Array.from({ length: 5 }).map((_, idx) => (
+                    <Star
+                      key={idx}
+                      className={`h-4 w-4 ${idx < t.rating ? 'fill-accent text-accent' : 'text-border'}`}
+                    />
+                  ))}
+                </div>
+                <p className="mt-4 flex-1 text-sm leading-relaxed text-muted-foreground">"{t.review}"</p>
+                <div className="mt-6 flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
+                    {t.avatar}
+                  </div>
+                  <div>
+                    <div className="text-sm font-semibold">{t.name}</div>
+                    <div className="text-xs text-muted-foreground">{t.role}</div>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
+        {/* Integrations */}
+        <Reveal delay={0.1}>
+          <div className="mx-auto mt-24 max-w-3xl text-center">
+            <h3 className="font-display text-2xl font-extrabold tracking-tight sm:text-3xl">
+              Integrates With Your Favorite Tools
+            </h3>
+            <p className="mt-4 text-muted-foreground">
+              Fast High Level connects seamlessly with the apps you already use.
+            </p>
+          </div>
+        </Reveal>
+        <div className="mx-auto mt-10 grid max-w-4xl grid-cols-3 gap-4 sm:grid-cols-6">
+          {INTEGRATIONS.map((tool, i) => {
+            const Icon = tool.icon;
+            return (
+              <Reveal key={tool.name} delay={0.03 * i}>
+                <div className="flex flex-col items-center gap-2 rounded-2xl border border-border bg-secondary/40 p-4 shadow-sm backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/10">
+                  <Icon className="h-6 w-6 text-primary" strokeWidth={1.8} />
+                  <span className="text-center text-xs font-medium text-muted-foreground">{tool.name}</span>
+                </div>
+              </Reveal>
+            );
+          })}
+        </div>
+
+        {/* CTA Banner */}
+        {/* <Reveal delay={0.1}>
+          <div className="relative mt-24 overflow-hidden rounded-[2rem] border border-border bg-gradient-to-br from-primary to-accent p-10 text-center shadow-2xl shadow-primary/30 lg:p-16">
+            <div className="pointer-events-none absolute -top-20 left-10 h-64 w-64 rounded-full bg-white/10 blur-[100px]" />
+            <div className="pointer-events-none absolute -bottom-20 right-10 h-64 w-64 rounded-full bg-white/10 blur-[100px]" />
+            <h3 className="relative font-display text-3xl font-extrabold tracking-tight text-primary-foreground sm:text-4xl">
+              Built to Make Business Growth Easier
+            </h3>
+            <p className="relative mx-auto mt-4 max-w-2xl text-primary-foreground/90">
+              Join thousands of businesses using Fast High Level to automate marketing, close more sales, and deliver exceptional customer experiences — all from one platform.
+            </p>
+            <Link
+              to="/contact"
+              className="relative mt-8 inline-block rounded-full bg-background px-8 py-3.5 font-semibold text-foreground shadow-lg transition-transform hover:-translate-y-0.5 active:scale-[0.98]"
+            >
+              Start Free Trial
+            </Link>
+          </div>
+        </Reveal> */}
+      </div>
+    </section>
+  );
+}
+
 
 export function TrustBar() {
   return (
