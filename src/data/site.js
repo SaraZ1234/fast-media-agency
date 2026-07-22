@@ -1,6 +1,6 @@
 export const AGENCY = {
   name: 'FAST MEDIA AGENCY',
-  phone: '+971 50 123 4567',
+  phone: '+1(604)239-6141',
   email: 'hello@fastmediaagency.com',
   whatsapp: '16042396141',
   address: 'Office 1204, Business Bay Tower, Dubai, UAE',
