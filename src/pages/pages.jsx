@@ -41,8 +41,8 @@ function PageHero({ eyebrow, title, sub }) {
         <Reveal><Eyebrow>{eyebrow}</Eyebrow></Reveal>
         <Reveal delay={0.05}>
           <h1
-            className="mx-auto mt-3 max-w-3xl font-display font-bold leading-tight tracking-tight text-foreground sm:mt-4"
-            style={{ fontSize: 'clamp(1.75rem, 3vw + 0.5rem, 2.75rem)' }}
+            className="mx-auto mt-3 max-w-3xl font-display font-extrabold leading-[1.05] tracking-tight text-foreground sm:mt-4"
+            style={{ fontSize: 'clamp(2rem, 3vw + 0.6rem, 3.25rem)' }}
           >
             {title}
           </h1>
@@ -51,7 +51,7 @@ function PageHero({ eyebrow, title, sub }) {
           <Reveal delay={0.1}>
             <p
               className="mx-auto mt-3 max-w-2xl leading-relaxed text-muted-foreground sm:mt-3.5"
-              style={{ fontSize: 'clamp(0.9375rem, 1vw + 0.6rem, 1.125rem)' }}
+              style={{ fontSize: 'clamp(1rem, 1vw + 0.65rem, 1.2rem)' }}
             >
               {sub}
             </p>

@@ -60,7 +60,7 @@ export function SectionHead({ eyebrow, title, sub, center }) {
       <Reveal delay={0.05}>
         <h2
           className="mt-5 font-display font-black leading-[0.95] tracking-[-0.03em]"
-          style={{ fontSize: 'clamp(1.5rem, 1.1rem + 1.8vw, 2.75rem)' }}
+          style={{ fontSize: 'clamp(1.75rem, 1.2rem + 2vw, 3rem)' }}
         >
           {title}
         </h2>
@@ -69,7 +69,7 @@ export function SectionHead({ eyebrow, title, sub, center }) {
         <Reveal delay={0.1}>
           <p
             className="mt-4 text-muted-foreground"
-            style={{ fontSize: 'clamp(0.9375rem, 0.85rem + 0.4vw, 1.125rem)' }}
+            style={{ fontSize: 'clamp(1rem, 0.92rem + 0.45vw, 1.2rem)' }}
           >
             {sub}
           </p>
@@ -91,8 +91,8 @@ export function Hero() {
 
           <Reveal delay={0.05}>
             <h1
-              className="mt-5 font-display font-extrabold leading-[1.18] tracking-tight"
-              style={{ fontSize: 'clamp(1.5rem, 1.15rem + 1.6vw, 2.5rem)' }}
+              className="mt-5 font-display font-extrabold leading-[1.08] tracking-tight"
+              style={{ fontSize: 'clamp(1.75rem, 1.2rem + 2vw, 3rem)' }}
             >
               Turn Clicks Into Customers with{' '}
               <span className="relative inline-block whitespace-nowrap text-primary">
@@ -108,7 +108,7 @@ export function Hero() {
           <Reveal delay={0.1}>
             <p
               className="mt-5 max-w-xl leading-relaxed text-muted-foreground"
-              style={{ fontSize: 'clamp(0.9rem, 0.82rem + 0.3vw, 1.0625rem)' }}
+              style={{ fontSize: 'clamp(1rem, 0.92rem + 0.35vw, 1.125rem)' }}
             >
               We help ambitious businesses attract more customers, generate high-quality leads, and turn traffic into
               revenue — through data-driven SEO, high-converting Google Ads, modern websites, and social media
@@ -122,7 +122,7 @@ export function Hero() {
               {SERVICE_BADGES.map((service) => (
                 <span
                   key={service}
-                  className="inline-flex cursor-default items-center gap-1.5 rounded-full border border-border bg-secondary/60 px-3 py-1.5 text-[11px] font-semibold text-foreground/80 transition-colors hover:border-primary/40 hover:bg-secondary sm:text-xs"
+                  className="inline-flex cursor-default items-center gap-1.5 rounded-full border border-border bg-secondary/60 px-3 py-1.5 text-xs font-semibold text-foreground/80 transition-colors hover:border-primary/40 hover:bg-secondary sm:text-xs"
                 >
                   <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
                   {service}
@@ -133,7 +133,7 @@ export function Hero() {
 
           {/* Trust indicator */}
           <Reveal delay={0.15}>
-            <div className="mt-6 flex flex-wrap items-center gap-2 text-sm font-medium text-muted-foreground">
+            <div className="mt-6 flex flex-wrap items-center gap-2 text-[15px] font-medium text-muted-foreground">
               <div className="flex text-accent">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <svg key={i} viewBox="0 0 20 20" fill="currentColor" className="h-3.5 w-3.5 shrink-0">
@@ -177,7 +177,7 @@ export function Hero() {
                   <div key={s.label} className="min-w-0 sm:border-l sm:border-border sm:pl-4 sm:first:border-l-0 sm:first:pl-0">
                     <div
                       className="font-display font-extrabold text-foreground"
-                      style={{ fontSize: 'clamp(1.15rem, 0.95rem + 0.8vw, 1.625rem)' }}
+                      style={{ fontSize: 'clamp(1.35rem, 1rem + 1vw, 2rem)' }}
                     >
                       {s.value}
                     </div>
@@ -201,7 +201,7 @@ export function Hero() {
             />
           </div>
           <div className="absolute -bottom-4 -left-4 hidden rounded-2xl border border-border bg-background/90 px-4 py-3 shadow-xl backdrop-blur-md sm:block">
-            <div className="font-display text-lg font-extrabold text-foreground">100+</div>
+            <div className="font-display text-xl font-extrabold text-foreground">100+</div>
             <div className="text-[11px] text-muted-foreground">Projects Delivered</div>
           </div>
         </Reveal>
