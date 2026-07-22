@@ -2,7 +2,7 @@ export const AGENCY = {
   name: 'FAST MEDIA AGENCY',
   phone: '+971 50 123 4567',
   email: 'hello@fastmediaagency.com',
-  whatsapp: '971501234567',
+  whatsapp: '16042396141',
   address: 'Office 1204, Business Bay Tower, Dubai, UAE',
   hours: 'Mon – Sat: 9:00 AM – 7:00 PM',
 };

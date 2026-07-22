@@ -2,13 +2,16 @@
   TEMPLATE STYLES: These styles are used as a base template.
   AI is allowed to modify these styles as needed.
 */
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap'); */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-body {
+/* body {
   font-family: "Inter", sans-serif;
   overflow-x: clip;
   -webkit-font-smoothing: antialiased;
@@ -18,6 +21,15 @@ body {
 .font-display {
   font-family: "Plus Jakarta Sans", sans-serif;
   letter-spacing: -0.01em;
+} */
+
+body {
+  font-family: "Inter", sans-serif;
+}
+
+.font-display {
+  font-family: "Outfit", sans-serif;
+  letter-spacing: -0.02em;
 }
 
 @keyframes marquee {
