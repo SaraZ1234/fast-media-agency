@@ -1566,7 +1566,20 @@ export function FaqPage() {
 
 export function ContactPage() {
   const [sent, setSent] = useState(false);
-  const [form, setForm] = useState({ name: '', email: '', phone: '', service: '', message: '', company: '' });
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    businessName: '',
+    industry: '',
+    website: '',
+    service: '',
+    budget: '',
+    goal: '',
+    socialPages: '',
+    message: '',
+    company: ''
+  });
   const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
   const submit = (e) => {
     e.preventDefault();
@@ -1605,7 +1618,7 @@ export function ContactPage() {
           </a>
           <div className="mt-3 overflow-hidden rounded-2xl border border-border sm:mt-4">
             <iframe title="Office location" className="h-52 w-full grayscale sm:h-64" loading="lazy" referrerPolicy="no-referrer-when-downgrade"
-              src="https://www.google.com/maps?q=Business+Bay+Dubai&output=embed" />
+              src="https://www.google.com/maps?q=101+Queen+Street+West+Toronto+ON+M5H+2NI+Canada&output=embed" />
           </div>
         </div>
         <div className="rounded-3xl border border-border bg-card p-5 sm:p-6 lg:p-8">
@@ -1614,7 +1627,22 @@ export function ContactPage() {
               <CheckCircle2 className="h-12 w-12 text-accent sm:h-14 sm:w-14" />
               <h3 className="mt-3 font-display text-xl font-bold sm:mt-4 sm:text-2xl">Thank you!</h3>
               <p className="mt-2 max-w-sm text-sm text-muted-foreground sm:text-base">Your message has been received. Our team will get back to you within one business day.</p>
-              <button onClick={() => { setSent(false); setForm({ name: '', email: '', phone: '', service: '', message: '', company: '' }); }} className="mt-5 rounded-full border border-border px-5 py-2.5 text-sm font-semibold transition-transform hover:-translate-y-0.5 sm:mt-6">Send another</button>
+              <button onClick={() => {
+                setSent(false); setForm({
+                  name: '',
+                  email: '',
+                  phone: '',
+                  businessName: '',
+                  industry: '',
+                  website: '',
+                  service: '',
+                  budget: '',
+                  goal: '',
+                  socialPages: '',
+                  message: '',
+                  company: ''
+                });
+              }} className="mt-5 rounded-full border border-border px-5 py-2.5 text-sm font-semibold transition-transform hover:-translate-y-0.5 sm:mt-6">Send another</button>
             </div>
           ) : (
             <form onSubmit={submit} className="space-y-3.5 sm:space-y-4">
@@ -1728,6 +1756,9 @@ export function ContactPage() {
                       'Graphic Design',
                       'Video Editing',
                       'Branding',
+                      'Lead Generation',
+                      'Performance Management',
+                      'E-Commerce Marketing',
                     ].map((service) => (
                       <option key={service} value={service}>
                         {service}
