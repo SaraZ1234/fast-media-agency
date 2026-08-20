@@ -201,8 +201,8 @@ export function Hero() {
             />
           </div>
           <div className="absolute -bottom-4 -left-4 hidden rounded-2xl border border-border bg-background/90 px-4 py-3 shadow-xl backdrop-blur-md sm:block">
-            <div className="font-display text-xl font-extrabold text-foreground">100+</div>
-            <div className="text-[11px] text-muted-foreground">Projects Delivered</div>
+            {/* <div className="font-display text-xl font-extrabold text-foreground">100+</div>
+            <div className="text-[11px] text-muted-foreground">Projects Delivered</div> */}
           </div>
         </Reveal>
       </div>
@@ -458,8 +458,8 @@ export function FastHighLevelPricing() {
             <Reveal key={plan.name} delay={0.05 * i}>
               <div
                 className={`relative flex h-full flex-col rounded-2xl border p-6 shadow-sm backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:shadow-xl sm:p-8 ${plan.popular
-                    ? 'border-primary/40 bg-gradient-to-br from-primary/10 to-accent/10 shadow-lg shadow-primary/20 hover:shadow-primary/30'
-                    : 'border-border bg-secondary/40 hover:border-primary/40 hover:shadow-primary/10'
+                  ? 'border-primary/40 bg-gradient-to-br from-primary/10 to-accent/10 shadow-lg shadow-primary/20 hover:shadow-primary/30'
+                  : 'border-border bg-secondary/40 hover:border-primary/40 hover:shadow-primary/10'
                   }`}
               >
                 {plan.popular && (
@@ -488,8 +488,8 @@ export function FastHighLevelPricing() {
                 <Link
                   to="/contact"
                   className={`mt-6 w-full rounded-full px-5 py-3 text-center text-sm font-semibold shadow-lg transition-transform hover:-translate-y-0.5 active:scale-[0.98] sm:mt-8 sm:px-6 sm:py-3.5 sm:text-base ${plan.popular
-                      ? 'bg-primary text-primary-foreground shadow-primary/30'
-                      : 'bg-accent text-accent-foreground shadow-accent/25'
+                    ? 'bg-primary text-primary-foreground shadow-primary/30'
+                    : 'bg-accent text-accent-foreground shadow-accent/25'
                     }`}
                 >
                   {plan.cta}
@@ -737,7 +737,7 @@ export function About({ full }) {
     { icon: Users2, value: "150+", label: "Brands Grown" },
     { icon: Rocket, value: "500+", label: "Campaigns Launched" },
     { icon: TrendingUp, value: "3.2x", label: "Average ROI Increase" },
-    { icon: Award, value: "92%", label: "Client Retention Rate" },
+    { icon: Award, value: "98%", label: "Client Retention Rate" },
   ];
 
   const MILESTONES = [
@@ -908,51 +908,158 @@ export function About({ full }) {
 }
 
 export function ServicesGrid({ full, hideHead }) {
-  const list = full ? SERVICES : SERVICES;
+  const pillars = [
+    {
+      title: 'Strategy',
+      description:
+        'Marketing and growth strategies built around your audience, goals and customer journey.',
+      services: [
+        'social-media-marketing',
+        'seo',
+        'lead-generation',
+      ],
+    },
+    {
+      title: 'Creative',
+      description:
+        'Creative assets, branding and digital experiences that make your business stand out.',
+      services: [
+        'graphic-design',
+        'branding',
+        'video-editing',
+        'website-development',
+      ],
+    },
+    {
+      title: 'Performance',
+      description:
+        'Data-driven campaigns and optimization focused on measurable growth and conversions.',
+      services: [
+        'google-ads',
+        'meta-ads',
+        'performance-management',
+        'ecommerce-marketing',
+      ],
+    },
+  ];
+
+  const serviceMap = Object.fromEntries(
+    SERVICES.map((service) => [service.slug, service])
+  );
+
   return (
     <section className="bg-secondary/30 py-14 sm:py-20">
       <div className="mx-auto max-w-[90rem] px-4 sm:px-5 lg:px-10">
-        {!hideHead && <SectionHead center eyebrow="Our Services" title="Everything you need to grow, under one roof" sub="Eight core services engineered to attract, convert and retain customers." />}
-        <div className={`grid gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4 ${hideHead ? '' : 'mt-8 sm:mt-12'}`}>
-          {list.map((s, i) => (
-            <Reveal key={s.slug} delay={(i % 4) * 0.06}>
-              <Link to={`/services/${s.slug}`} className="group flex h-full flex-col rounded-2xl border border-border bg-card p-5 transition-all hover:-translate-y-1 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/5 sm:p-6">
-                <span className="grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-primary/15 to-accent/15 text-primary transition-colors group-hover:from-primary group-hover:to-accent group-hover:text-white sm:h-12 sm:w-12">
-                  <Icon name={s.icon} className="h-5 w-5 sm:h-6 sm:w-6" />
-                </span>
-                <h3 className="mt-4 font-display font-bold sm:mt-5" style={{ fontSize: 'clamp(0.9375rem, 0.86rem + 0.35vw, 1.125rem)' }}>
-                  {s.title}
-                </h3>
-                <p className="mt-1.5 text-muted-foreground" style={{ fontSize: 'clamp(0.8125rem, 0.77rem + 0.25vw, 0.875rem)' }}>
-                  {s.tagline}
+
+        {!hideHead && (
+          <SectionHead
+            center
+            eyebrow="Our Services"
+            title="Strategy → Creative → Performance"
+            sub="A connected system of services designed to attract, convert and retain customers."
+          />
+        )}
+
+        <div className={`${hideHead ? '' : 'mt-8 sm:mt-12'} space-y-10 sm:space-y-14`}>
+          {pillars.map((pillar) => (
+            <div key={pillar.title}>
+              <div className="mb-5 text-center sm:mb-7">
+                <h2 className="font-display text-2xl font-bold sm:text-3xl">
+                  {pillar.title}
+                </h2>
+
+                <p className="mx-auto mt-2 max-w-2xl text-sm text-muted-foreground sm:text-base">
+                  {pillar.description}
                 </p>
-                <ul className="mt-3 flex flex-wrap gap-1.5 sm:mt-4">
-                  {s.features.slice(0, full ? 30 : 5).map((f) => (
-                    <li
-                      key={f}
-                      className="cursor-default rounded-full bg-secondary px-2.5 py-1 font-medium text-muted-foreground transition-all duration-200 hover:-translate-y-0.5 hover:bg-primary/10 hover:text-primary"
-                      style={{ fontSize: 'clamp(0.625rem, 0.6rem + 0.15vw, 0.6875rem)' }}
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
+                {pillar.services.map((slug, i) => {
+                  const s = serviceMap[slug];
+
+                  if (!s) return null;
+
+                  return (
+                    <Reveal
+                      key={s.slug}
+                      delay={(i % 4) * 0.06}
                     >
-                      {f}
-                    </li>
-                  ))}
-                  {!full && s.features.length > 5 && (
-                    <li
-                      className="rounded-full bg-primary/10 px-2.5 py-1 font-medium text-primary"
-                      style={{ fontSize: 'clamp(0.625rem, 0.6rem + 0.15vw, 0.6875rem)' }}
-                    >
-                      +{s.features.length - 5} more
-                    </li>
-                  )}
-                </ul>
-                <span
-                  className="mt-4 inline-flex items-center gap-1 font-bold text-primary transition-colors group-hover:gap-1.5 group-hover:text-accent sm:mt-5"
-                  style={{ fontSize: 'clamp(0.8125rem, 0.77rem + 0.25vw, 0.875rem)' }}
-                >
-                  Learn more <Icons.ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </span>
-              </Link>
-            </Reveal>
+                      <Link
+                        to={`/services/${s.slug}`}
+                        className="group flex h-full flex-col rounded-2xl border border-border bg-card p-5 transition-all hover:-translate-y-1 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/5 sm:p-6"
+                      >
+                        <span className="grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-primary/15 to-accent/15 text-primary transition-colors group-hover:from-primary group-hover:to-accent group-hover:text-white sm:h-12 sm:w-12">
+                          <Icon
+                            name={s.icon}
+                            className="h-5 w-5 sm:h-6 sm:w-6"
+                          />
+                        </span>
+
+                        <h3
+                          className="mt-4 font-display font-bold sm:mt-5"
+                          style={{
+                            fontSize:
+                              'clamp(0.9375rem, 0.86rem + 0.35vw, 1.125rem)',
+                          }}
+                        >
+                          {s.title}
+                        </h3>
+
+                        <p
+                          className="mt-1.5 text-muted-foreground"
+                          style={{
+                            fontSize:
+                              'clamp(0.8125rem, 0.77rem + 0.25vw, 0.875rem)',
+                          }}
+                        >
+                          {s.tagline}
+                        </p>
+
+                        <ul className="mt-3 flex flex-wrap gap-1.5 sm:mt-4">
+                          {s.features
+                            .slice(0, full ? 30 : 5)
+                            .map((f) => (
+                              <li
+                                key={f}
+                                className="cursor-default rounded-full bg-secondary px-2.5 py-1 font-medium text-muted-foreground transition-all duration-200 hover:-translate-y-0.5 hover:bg-primary/10 hover:text-primary"
+                                style={{
+                                  fontSize:
+                                    'clamp(0.625rem, 0.6rem + 0.15vw, 0.6875rem)',
+                                }}
+                              >
+                                {f}
+                              </li>
+                            ))}
+
+                          {!full && s.features.length > 5 && (
+                            <li
+                              className="rounded-full bg-primary/10 px-2.5 py-1 font-medium text-primary"
+                              style={{
+                                fontSize:
+                                  'clamp(0.625rem, 0.6rem + 0.15vw, 0.6875rem)',
+                              }}
+                            >
+                              +{s.features.length - 5} more
+                            </li>
+                          )}
+                        </ul>
+
+                        <span
+                          className="mt-4 inline-flex items-center gap-1 font-bold text-primary transition-colors group-hover:gap-1.5 group-hover:text-accent sm:mt-5"
+                          style={{
+                            fontSize:
+                              'clamp(0.8125rem, 0.77rem + 0.25vw, 0.875rem)',
+                          }}
+                        >
+                          Learn more
+                          <Icons.ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                        </span>
+                      </Link>
+                    </Reveal>
+                  );
+                })}
+              </div>
+            </div>
           ))}
         </div>
       </div>
@@ -1218,8 +1325,8 @@ export function Pricing({ hideHead }) {
               whileHover={{ y: -6 }}
               transition={{ type: "spring", stiffness: 300, damping: 22 }}
               className={`relative flex h-full flex-col rounded-3xl border p-6 sm:p-8 ${p.featured
-                  ? "border-primary bg-primary text-primary-foreground shadow-2xl shadow-primary/30 lg:-mt-4"
-                  : "border-border bg-card"
+                ? "border-primary bg-primary text-primary-foreground shadow-2xl shadow-primary/30 lg:-mt-4"
+                : "border-border bg-card"
                 }`}
             >
               {p.featured && (
@@ -1551,8 +1658,8 @@ export function FAQ({ full, hideHead }) {
             <Reveal key={f.q} delay={i * 0.04}>
               <div
                 className={`overflow-hidden rounded-2xl border transition-all duration-300 ${isOpen
-                    ? 'border-primary/50 bg-primary/[0.02] shadow-md'
-                    : 'border-border bg-card hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-lg'
+                  ? 'border-primary/50 bg-primary/[0.02] shadow-md'
+                  : 'border-border bg-card hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-lg'
                   }`}
               >
                 <button

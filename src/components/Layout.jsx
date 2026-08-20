@@ -20,7 +20,7 @@ function useTheme() {
 function Logo() {
   return (
     <Link to="/" className="flex items-center gap-2 group">
-      <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-primary to-accent text-white font-display font-extrabold text-lg shadow-lg shadow-primary/30">F</span>
+      {/* <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-primary to-accent text-white font-display font-extrabold text-lg shadow-lg shadow-primary/30">F</span> */}
       <span className="font-display font-extrabold tracking-tight text-lg leading-none">
         FAST<span className="text-accent">MEDIA</span>
       </span>

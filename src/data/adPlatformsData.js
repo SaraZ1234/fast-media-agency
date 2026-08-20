@@ -8,7 +8,8 @@ export const GUIDE_INTRO = {
   title: "A Complete Guide to FAST MEDIA AGENCY's Digital Marketing Services",
   paragraphs: [
     'Growing a business today rarely comes down to a single channel. The brands that scale fastest combine search visibility, paid advertising, an active social presence, a strong website, consistent branding, and content that keeps audiences engaged — all working together rather than in isolation.',
-    'This guide walks through the six core services we offer at FAST MEDIA AGENCY: SEO, Google Ads Management, Social Media Marketing, Website Development, Branding, and Content Marketing. We break down what each service includes, typical pricing and timelines, and how to decide which combination is right for your business right now.',
+
+    'This guide walks through the core digital marketing services we offer at FAST MEDIA AGENCY. We break down what each service includes, typical pricing and timelines, and how to decide which combination is right for your business right now.',
   ],
 };
 

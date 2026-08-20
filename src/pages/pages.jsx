@@ -8,7 +8,7 @@ import { AGENCY, SERVICES, SERVICE_DETAILS, PORTFOLIO, BLOG, PRICING, TESTIMONIA
 import { Hero, Marquee, TrustBar, About, ServicesGrid, WhyUs, Industries, Process, PortfolioGrid, Testimonials, Team, Pricing, BlogGrid, FAQ, CTA, SectionHead, Reveal, Eyebrow, FastHighLevel, FastHighLevelPricing } from "@/sections";
 import AdvertisingPlatformsGuide from "@/components/ui/AdvertisingPlatformsGuide";
 import { FAQS } from "../data/site";
-
+import { MarketingFunnel } from '@/components/ui/MarketingFunnel';
 
 function CtaButtons({ light }) {
   return (
@@ -96,10 +96,35 @@ export function AboutPage() {
     <Team />
     <WhyUs />
     <Process />
-    <Testimonials />
+    {/* <Testimonials /> */}
     <CTA />
   </>);
 }
+
+// export function ServicesPage() {
+//   return (
+//     <>
+//       <Seo
+//         title="Our Services"
+//         desc="Explore FAST MEDIA AGENCY services: social media, Google Ads, Meta Ads, SEO, web development, graphic design, video editing and branding."
+//       />
+
+//       <PageHero
+//         eyebrow="Our Services"
+//         title="Everything you need to grow"
+//         sub="Eleven core services engineered to attract, convert and retain customers."
+//       />
+
+//       <ServicesGrid full hideHead />
+
+//       <WhyUs />
+
+//       <Process />
+
+//       <CTA />
+//     </>
+//   );
+// }
 
 export function ServicesPage() {
   return (
@@ -112,7 +137,7 @@ export function ServicesPage() {
       <PageHero
         eyebrow="Our Services"
         title="Everything you need to grow"
-        sub="Eight core services engineered to attract, convert and retain customers."
+        sub="Eleven core services engineered to attract, convert and retain customers."
       />
 
       <ServicesGrid full hideHead />
@@ -120,6 +145,8 @@ export function ServicesPage() {
       <WhyUs />
 
       <Process />
+
+      <MarketingFunnel />
 
       <CTA />
     </>
@@ -367,16 +394,16 @@ export function PortfolioDetailPage() {
             </div>
           )}
           {item.link && (
-  <a
-    href={item.link}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="absolute bottom-4 right-4 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-[clamp(0.8125rem,0.78rem+0.2vw,0.875rem)] font-bold text-primary shadow-lg transition-transform duration-200 hover:scale-105 sm:bottom-5 sm:right-5"
-  >
-    Visit live website
-    <Icons.ExternalLink className="h-4 w-4 shrink-0" />
-  </a>
-)}
+            <a
+              href={item.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute bottom-4 right-4 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-[clamp(0.8125rem,0.78rem+0.2vw,0.875rem)] font-bold text-primary shadow-lg transition-transform duration-200 hover:scale-105 sm:bottom-5 sm:right-5"
+            >
+              Visit live website
+              <Icons.ExternalLink className="h-4 w-4 shrink-0" />
+            </a>
+          )}
         </div>
       </Reveal>
 
@@ -540,17 +567,17 @@ export function PortfolioDetailPage() {
         )}
       </div>
 
-     {/* CTA */}
-<Reveal>
-  <div className="relative mt-12 overflow-hidden rounded-3xl bg-gradient-to-br from-primary to-accent px-6 pb-10 pt-8 text-center text-white sm:px-8 sm:pb-12 sm:pt-9">
-    <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 animate-pulse rounded-full bg-white/10 blur-2xl" />
-    <h3 className="relative font-display text-lg font-bold sm:text-xl">Want results like these?</h3>
-    <p className="relative mx-auto mt-3 max-w-md text-xs text-white/85 sm:text-sm">
-      Let's build something similarly impactful for your brand — book a free consultation, no strings attached.
-    </p>
-    <div className="relative mt-6 flex justify-center"><CtaButtons light /></div>
-  </div>
-</Reveal>
+      {/* CTA */}
+      <Reveal>
+        <div className="relative mt-12 overflow-hidden rounded-3xl bg-gradient-to-br from-primary to-accent px-6 pb-10 pt-8 text-center text-white sm:px-8 sm:pb-12 sm:pt-9">
+          <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 animate-pulse rounded-full bg-white/10 blur-2xl" />
+          <h3 className="relative font-display text-lg font-bold sm:text-xl">Want results like these?</h3>
+          <p className="relative mx-auto mt-3 max-w-md text-xs text-white/85 sm:text-sm">
+            Let's build something similarly impactful for your brand — book a free consultation, no strings attached.
+          </p>
+          <div className="relative mt-6 flex justify-center"><CtaButtons light /></div>
+        </div>
+      </Reveal>
       {/* Related — reverted to original, untouched */}
       <h3 className="mt-14 font-display text-xl font-bold">More case studies</h3>
       <div className="mt-5 grid gap-5 sm:grid-cols-3">
@@ -827,15 +854,15 @@ export function ServiceDetailPage() {
       )}
 
       {/* CTA */}
-<Reveal>
-  <div className="relative mt-12 overflow-hidden rounded-[2rem] bg-gradient-to-br from-primary to-accent px-5 pb-8 pt-6 text-center text-white sm:mt-14 sm:px-8 sm:pb-12 sm:pt-9">
-    <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 animate-pulse rounded-full bg-white/10 blur-2xl" />
-    <h2 className="relative font-display text-lg font-extrabold leading-tight sm:text-xl">
-      Ready to get started with {service.title}?
-    </h2>
-    <div className="relative mt-6 flex justify-center"><CtaButtons light /></div>
-  </div>
-</Reveal>
+      <Reveal>
+        <div className="relative mt-12 overflow-hidden rounded-[2rem] bg-gradient-to-br from-primary to-accent px-5 pb-8 pt-6 text-center text-white sm:mt-14 sm:px-8 sm:pb-12 sm:pt-9">
+          <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 animate-pulse rounded-full bg-white/10 blur-2xl" />
+          <h2 className="relative font-display text-lg font-extrabold leading-tight sm:text-xl">
+            Ready to get started with {service.title}?
+          </h2>
+          <div className="relative mt-6 flex justify-center"><CtaButtons light /></div>
+        </div>
+      </Reveal>
 
       {/* Related services */}
       <div className="mt-12 sm:mt-14">
@@ -1591,30 +1618,199 @@ export function ContactPage() {
             </div>
           ) : (
             <form onSubmit={submit} className="space-y-3.5 sm:space-y-4">
-              <h3 className="font-display text-lg font-bold sm:text-xl">Send us a message</h3>
-              <input type="text" tabIndex={-1} autoComplete="off" value={form.company} onChange={set('company')} className="hidden" aria-hidden="true" />
+              <h3 className="font-display text-lg font-bold sm:text-xl">
+                Send us a message
+              </h3>
+
+              <input
+                type="text"
+                tabIndex={-1}
+                autoComplete="off"
+                value={form.company}
+                onChange={set('company')}
+                className="hidden"
+                aria-hidden="true"
+              />
+
+              {/* Name & Email */}
               <div className="grid gap-3.5 sm:grid-cols-2 sm:gap-4">
-                <Field label="Full Name" required value={form.name} onChange={set('name')} placeholder="Jane Cooper" />
-                <Field label="Email" type="email" required value={form.email} onChange={set('email')} placeholder="jane@company.com" />
+                <Field
+                  label="Full Name"
+                  required
+                  value={form.name}
+                  onChange={set('name')}
+                  placeholder="Jane Cooper"
+                />
+
+                <Field
+                  label="Email"
+                  type="email"
+                  required
+                  value={form.email}
+                  onChange={set('email')}
+                  placeholder="jane@company.com"
+                />
               </div>
+
+              {/* Phone & Business Name */}
               <div className="grid gap-3.5 sm:grid-cols-2 sm:gap-4">
-                <Field label="Phone" value={form.phone} onChange={set('phone')} placeholder="+971 50 000 0000" />
+                <Field
+                  label="Phone"
+                  value={form.phone}
+                  onChange={set('phone')}
+                  placeholder="+1 604 000 0000"
+                />
+
+                <Field
+                  label="Business Name"
+                  required
+                  value={form.businessName}
+                  onChange={set('businessName')}
+                  placeholder="Your Business Name"
+                />
+              </div>
+
+              {/* Industry & Website */}
+              <div className="grid gap-3.5 sm:grid-cols-2 sm:gap-4">
                 <div className="flex flex-col gap-1.5 sm:gap-2">
-                  <label className="text-xs font-medium sm:text-sm">Service Interested In</label>
-                  <select value={form.service} onChange={set('service')} className="rounded-xl border border-input bg-background px-4 py-2.5 text-xs outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20 sm:py-3 sm:text-sm">
+                  <label className="text-xs font-medium sm:text-sm">
+                    Industry <span className="text-accent">*</span>
+                  </label>
+
+                  <select
+                    required
+                    value={form.industry}
+                    onChange={set('industry')}
+                    className="rounded-xl border border-input bg-background px-4 py-2.5 text-xs outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20 sm:py-3 sm:text-sm"
+                  >
+                    <option value="">Select your industry</option>
+                    <option value="E-Commerce">E-Commerce</option>
+                    <option value="Real Estate">Real Estate</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Restaurants">Restaurants</option>
+                    <option value="Education">Education</option>
+                    <option value="Local Business">Local Business</option>
+                    <option value="Healthcare">Healthcare</option>
+                    <option value="Professional Services">Professional Services</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+
+                <Field
+                  label="Website"
+                  type="url"
+                  value={form.website}
+                  onChange={set('website')}
+                  placeholder="https://yourwebsite.com"
+                />
+              </div>
+
+              {/* Service & Budget */}
+              <div className="grid gap-3.5 sm:grid-cols-2 sm:gap-4">
+                <div className="flex flex-col gap-1.5 sm:gap-2">
+                  <label className="text-xs font-medium sm:text-sm">
+                    Service Interested In <span className="text-accent">*</span>
+                  </label>
+
+                  <select
+                    required
+                    value={form.service}
+                    onChange={set('service')}
+                    className="rounded-xl border border-input bg-background px-4 py-2.5 text-xs outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20 sm:py-3 sm:text-sm"
+                  >
                     <option value="">Select a service</option>
-                    {['Social Media', 'Google Ads', 'Meta Ads', 'SEO', 'Web Development', 'Graphic Design', 'Video Editing', 'Branding'].map((s) => <option key={s}>{s}</option>)}
+                    {[
+                      'Social Media',
+                      'Google Ads',
+                      'Meta Ads',
+                      'SEO',
+                      'Web Development',
+                      'Graphic Design',
+                      'Video Editing',
+                      'Branding',
+                    ].map((service) => (
+                      <option key={service} value={service}>
+                        {service}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="flex flex-col gap-1.5 sm:gap-2">
+                  <label className="text-xs font-medium sm:text-sm">
+                    Monthly Marketing Budget
+                  </label>
+
+                  <select
+                    value={form.budget}
+                    onChange={set('budget')}
+                    className="rounded-xl border border-input bg-background px-4 py-2.5 text-xs outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20 sm:py-3 sm:text-sm"
+                  >
+                    <option value="">Select your budget</option>
+                    <option value="Under $500">Under $500</option>
+                    <option value="$500 - $1,000">$500 - $1,000</option>
+                    <option value="$1,000 - $2,500">$1,000 - $2,500</option>
+                    <option value="$2,500 - $5,000">$2,500 - $5,000</option>
+                    <option value="$5,000+">$5,000+</option>
                   </select>
                 </div>
               </div>
+
+              {/* Primary Goal */}
               <div className="flex flex-col gap-1.5 sm:gap-2">
-                <label className="text-xs font-medium sm:text-sm">Message <span className="text-accent">*</span></label>
-                <textarea required rows={5} value={form.message} onChange={set('message')} placeholder="Tell us about your project and goals..." className="rounded-xl border border-input bg-background px-4 py-2.5 text-xs outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20 sm:py-3 sm:text-sm" />
+                <label className="text-xs font-medium sm:text-sm">
+                  Primary Goal <span className="text-accent">*</span>
+                </label>
+
+                <select
+                  required
+                  value={form.goal}
+                  onChange={set('goal')}
+                  className="rounded-xl border border-input bg-background px-4 py-2.5 text-xs outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20 sm:py-3 sm:text-sm"
+                >
+                  <option value="">What is your primary goal?</option>
+                  <option value="Awareness">Brand Awareness</option>
+                  <option value="Leads">Generate Leads</option>
+                  <option value="Sales">Increase Sales</option>
+                  <option value="Growth">Business Growth</option>
+                  <option value="Traffic">Increase Website Traffic</option>
+                </select>
               </div>
-              <button type="submit" className="flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:-translate-y-0.5 active:scale-[0.98] sm:py-3.5 sm:text-base">
+
+              {/* Social Media Pages */}
+              <Field
+                label="Current Social Media Pages"
+                value={form.socialPages}
+                onChange={set('socialPages')}
+                placeholder="Instagram, Facebook, LinkedIn URLs"
+              />
+
+              {/* Message */}
+              <div className="flex flex-col gap-1.5 sm:gap-2">
+                <label className="text-xs font-medium sm:text-sm">
+                  Message <span className="text-accent">*</span>
+                </label>
+
+                <textarea
+                  required
+                  rows={5}
+                  value={form.message}
+                  onChange={set('message')}
+                  placeholder="Tell us about your project and goals..."
+                  className="rounded-xl border border-input bg-background px-4 py-2.5 text-xs outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20 sm:py-3 sm:text-sm"
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:-translate-y-0.5 active:scale-[0.98] sm:py-3.5 sm:text-base"
+              >
                 <Send className="h-4 w-4" /> Send Message
               </button>
-              <p className="text-center text-[0.7rem] text-muted-foreground sm:text-xs">Protected against spam. We reply within 1 business day.</p>
+
+              <p className="text-center text-[0.7rem] text-muted-foreground sm:text-xs">
+                Protected against spam. We reply within 1 business day.
+              </p>
             </form>
           )}
         </div>

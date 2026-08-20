@@ -1,10 +1,11 @@
 export const AGENCY = {
   name: 'FAST MEDIA AGENCY',
   phone: '+1(604)239-6141',
-  email: 'hello@fastmediaagency.com',
+  email: 'fastmediaagencyofficial@gmail.com',
   whatsapp: '16042396141',
-  address: 'Office 1204, Business Bay Tower, Dubai, UAE',
-  hours: 'Mon – Sat: 9:00 AM – 7:00 PM',
+  address: '101 Queen Street, West Toronto, ON M5H 2NI, Canada',
+  hours: 'Pakistan Time: 4:00 PM – 12:00 AM | 7:00 PM – 3:00 AM | 9:00 PM – 6:00 AM',
+
 };
 
 export const HERO_IMG = 'https://images.hostinger.com/d011803a-6144-4613-8f9e-a1217e14416c.png';
@@ -67,6 +68,53 @@ export const SERVICES = [
     title: 'Branding',
     tagline: 'A brand people remember and trust.',
     features: ['Brand Strategy', 'Brand Identity', 'Logo', 'Color Palette', 'Typography', 'Brand Guidelines', 'Marketing Materials'],
+  },
+  {
+    slug: 'performance-management',
+    icon: 'BarChart3',
+    title: 'Performance Management',
+    tagline: 'Turn campaign data into measurable growth.',
+    features: [
+      'CPC Analysis',
+      'CPM Analysis',
+      'CTR Analysis',
+      'CPL Analysis',
+      'CPA Analysis',
+      'ROAS Analysis',
+      'Conversion Tracking',
+      'Budget Optimization',
+      'Analytics & Reporting',
+    ],
+  },
+  {
+    slug: 'ecommerce-marketing',
+    icon: 'ShoppingCart',
+    title: 'E-Commerce Marketing',
+    tagline: 'Turn products, traffic and campaigns into sales.',
+    features: [
+      'Product Marketing',
+      'Catalog Campaigns',
+      'Product Creatives',
+      'Retargeting',
+      'Product-Page Optimization',
+      'Conversion Optimization',
+      'Retention Campaigns',
+    ],
+  },
+  {
+    slug: 'lead-generation',
+    icon: 'Users',
+    title: 'Lead Generation',
+    tagline: 'Generate qualified leads and turn interest into opportunities.',
+    features: [
+      'Meta Lead Campaigns',
+      'WhatsApp Lead Campaigns',
+      'Landing Pages',
+      'Lead Forms',
+      'CRM Integration',
+      'Lead Qualification',
+      'Conversion Optimization',
+    ],
   },
 ];
 
