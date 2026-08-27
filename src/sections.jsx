@@ -272,7 +272,7 @@ export function FastHighLevel() {
                 to="/contact"
                 className="rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/30 transition-transform hover:-translate-y-0.5 active:scale-[0.98] sm:px-6 sm:py-3.5 sm:text-base"
               >
-                Start Free Trial
+                Get Started
               </Link>
               <Link
                 to="/contact"
@@ -348,7 +348,7 @@ export function FastHighLevelPricing() {
         'Basic Automation Workflows',
         'Mobile App Access',
       ],
-      cta: 'Start Free Trial',
+      cta: 'Get Started',
     },
     {
       name: 'Unlimited',
@@ -366,7 +366,7 @@ export function FastHighLevelPricing() {
         'Social Media Planner',
         'Priority 24/7 Support',
       ],
-      cta: 'Start Free Trial',
+      cta: 'Get Started',
     },
   ];
 
@@ -575,7 +575,7 @@ export function FastHighLevelPricing() {
             const Icon = tool.icon;
             return (
               <Reveal key={tool.name} delay={0.03 * i}>
-                <div className="flex flex-col items-center gap-2 rounded-2xl border border-border bg-secondary/40 p-3 shadow-sm backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/10 sm:p-4">
+                <div className="flex h-full min-h-[100px] flex-col items-center justify-center gap-2 rounded-2xl border border-border bg-secondary/40 p-3 text-center shadow-sm backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/10 sm:min-h-[110px] sm:p-4">
                   <Icon className="h-5 w-5 text-primary sm:h-6 sm:w-6" strokeWidth={1.8} />
                   <span className="text-center text-[0.7rem] font-medium text-muted-foreground sm:text-xs">{tool.name}</span>
                 </div>
